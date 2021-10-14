@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class Quiz extends AppCompatActivity {
 
     ImageButton BExit;
-    ImageButton BCorrect, BIncorret1, BIncorret2, BIncorret3;
+    ImageButton BOp1, BOp2, BOp3, BOp4;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     boolean correct = false;
     int result = 0;
@@ -50,8 +50,8 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-        BCorrect = findViewById(R.id.ButtonOp1);
-        BCorrect.setOnClickListener(new View.OnClickListener() {
+        BOp1 = findViewById(R.id.ButtonOp1);
+        BOp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int answer1 = 0;
@@ -67,8 +67,8 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-        BIncorret1 = findViewById(R.id.ButtonOp2);
-        BIncorret1.setOnClickListener(new View.OnClickListener() {
+        BOp2 = findViewById(R.id.ButtonOp2);
+        BOp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int answer2 = 1;
@@ -84,8 +84,8 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-        BIncorret2 = findViewById(R.id.ButtonOp3);
-        BIncorret2.setOnClickListener(new View.OnClickListener() {
+        BOp3 = findViewById(R.id.ButtonOp3);
+        BOp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int answer3 = 2;
@@ -101,8 +101,8 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-        BIncorret3 = findViewById(R.id.ButtonOp4);
-        BIncorret3.setOnClickListener(new View.OnClickListener() {
+        BOp4 = findViewById(R.id.ButtonOp4);
+        BOp4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int answer4 = 3;
