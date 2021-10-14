@@ -16,9 +16,9 @@ public class Quiz extends AppCompatActivity {
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private int correctAnswer;
     private String[] allQuestions;
+    private boolean[] answerIsCorrect;
     private int currentQuestion;
     private TextView textQuestion;
-    int result;
     boolean correct = false;
 
     @Override
@@ -29,9 +29,10 @@ public class Quiz extends AppCompatActivity {
         textQuestion = findViewById(R.id.textQuestion);
         allQuestions = getResources().getStringArray(R.array.all_question);
         currentQuestion = 0;
-        result = getResources().getInteger(R.integer.result);
-        showQuestion();
+        answerIsCorrect = new boolean[allQuestions.length];
 
+
+        showQuestion();
         configureButton(correctAnswer);
     }
 
@@ -105,6 +106,7 @@ public class Quiz extends AppCompatActivity {
 
     public void doValidate(int answer)
     {
+        Intent i=new Intent(this, Result.class);
         if(answer == correctAnswer)
         {
             Toast.makeText(this,R.string.correctAnswer,Toast.LENGTH_SHORT).show();
@@ -113,12 +115,19 @@ public class Quiz extends AppCompatActivity {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
         }
 
-        if(currentQuestion == 2)
+        answerIsCorrect[currentQuestion] = (answer == correctAnswer);
+
+        if(currentQuestion < allQuestions.length-1)
         {
             finish();
             startActivity(new Intent(Quiz.this, Result.class));
         }else
             {
+                int result = 0;
+                for(boolean b : answerIsCorrect)
+                {
+                    if(b) i.putExtra("result", result++);
+                }
                 currentQuestion++;
                 showQuestion();
             }
