@@ -41,7 +41,6 @@ public class Quiz extends AppCompatActivity {
 
         textQuestion.setText(parts[0]);
 
-
         for(int i=0; i < id_answers.length; i++)
         {
             TextView tb = (TextView) findViewById(id_answers[i]);

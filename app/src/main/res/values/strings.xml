@@ -7,6 +7,6 @@
 
     <array name="all_question">
         <item>¿Qué va hacia arriba y hacia abajo, pero esta en el mismo lugar?;*Escaleras;Globo;Gas;Ondas</item>
-        <item>Pregunta 2; a; *b; c; d</item>
+        <item>Pregunta 2;a;*b;c;d</item>
     </array>
 </resources>
