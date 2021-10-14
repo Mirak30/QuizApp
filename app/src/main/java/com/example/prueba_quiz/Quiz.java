@@ -115,9 +115,9 @@ public class Quiz extends AppCompatActivity {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
         }
 
-        answerIsCorrect[currentQuestion] = (answer == correctAnswer);
+        //answerIsCorrect[currentQuestion] = (answer == correctAnswer);
 
-        if(currentQuestion < allQuestions.length-1)
+        if(currentQuestion == 9)
         {
             finish();
             startActivity(new Intent(Quiz.this, Result.class));
