@@ -11,32 +11,48 @@ import android.widget.Toast;
 
 public class Quiz extends AppCompatActivity {
 
-    ImageButton BExit;
-    ImageButton BOp1, BOp2, BOp3, BOp4;
+    private ImageButton BExit;
+    private ImageButton BOp1, BOp2, BOp3, BOp4;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
+    private int correctAnswer;
+    private String[] allQuestions;
+    private int currentQuestion;
+    private TextView textQuestion;
+    int result;
     boolean correct = false;
-    int result = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        TextView text_Question = findViewById(R.id.textQuestion);
-        text_Question.setText(R.string.content_question);
+        textQuestion = findViewById(R.id.textQuestion);
+        allQuestions = getResources().getStringArray(R.array.all_question);
+        currentQuestion = 0;
+        result = getResources().getInteger(R.integer.result);
+        showQuestion();
 
-        String[] answers = getResources().getStringArray(R.array.answer);
+        configureButton(correctAnswer);
+    }
+
+    private void showQuestion() {
+        String q = allQuestions[currentQuestion];
+        String[] parts = q.split(";");
+
+        textQuestion.setText(parts[0]);
+
 
         for(int i=0; i < id_answers.length; i++)
         {
             TextView tb = (TextView) findViewById(id_answers[i]);
-            tb.setText(answers[i]);
+            String answer = parts[i+1];
+            if(answer.charAt(0) == '*')
+            {
+                correctAnswer = i;
+                answer = answer.substring(1);
+            }
+            tb.setText(answer);
         }
-
-        int correctAnswers = getResources().getInteger(R.integer.correct_name);
-
-
-        configureButton(correctAnswers);
     }
 
     public void configureButton(int cA)
@@ -54,16 +70,8 @@ public class Quiz extends AppCompatActivity {
         BOp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer1 = 0;
-                if(answer1 == cA)
-                {
-                    correct = true;
-                    doValidate();
-                }else
-                {
-                    correct = false;
-                    doValidate();
-                }
+                int answer = 0;
+                doValidate(answer);
             }
         });
 
@@ -71,16 +79,8 @@ public class Quiz extends AppCompatActivity {
         BOp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer2 = 1;
-                if(answer2 == cA)
-                {
-                    correct = true;
-                    doValidate();
-                }else
-                {
-                    correct = false;
-                    doValidate();
-                }
+                int answer = 1;
+                doValidate(answer);
             }
         });
 
@@ -88,16 +88,8 @@ public class Quiz extends AppCompatActivity {
         BOp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer3 = 2;
-                if(answer3 == cA)
-                {
-                    correct = true;
-                    doValidate();
-                }else
-                {
-                    correct = false;
-                    doValidate();
-                }
+                int answer = 2;
+                doValidate(answer);
             }
         });
 
@@ -105,31 +97,31 @@ public class Quiz extends AppCompatActivity {
         BOp4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer4 = 3;
-                if(answer4 == cA)
-                {
-                    correct = true;
-                    doValidate();
-                }else
-                    {
-                        correct = false;
-                    }
+                int answer = 3;
+                doValidate(answer);
             }
         });
 
     }
 
-    public void doValidate()
+    public void doValidate(int answer)
     {
-        if(correct)
+        if(answer == correctAnswer)
         {
             Toast.makeText(this,R.string.correctAnswer,Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(Quiz.this, Result.class));
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
         }
+
+        if(currentQuestion == 1)
+        {
+            finish();
+            startActivity(new Intent(Quiz.this, Result.class));
+        }
+
+        currentQuestion++;
+        showQuestion();
     }
 
 }

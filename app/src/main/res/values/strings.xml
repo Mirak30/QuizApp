@@ -3,14 +3,10 @@
 
     <string name="correctAnswer">Correcto!!</string>
     <string name="incorrectAnswer">Incorrecto...</string>
+    <integer name="result">0</integer>
 
-    <string name="content_question">¿Qué va hacia arriba y hacia abajo, pero esta en el mismo lugar?</string>
-    <array name="answer">
-        <item>Escaleras</item>
-        <item>Globo</item>
-        <item>Gas</item>
-        <item>Ondas</item>
+    <array name="all_question">
+        <item>¿Qué va hacia arriba y hacia abajo, pero esta en el mismo lugar?;*Escaleras;Globo;Gas;Ondas</item>
+        <item>Pregunta 2; a; *b; c; d</item>
     </array>
-    <integer name="correct_name">0</integer>
-
 </resources>
