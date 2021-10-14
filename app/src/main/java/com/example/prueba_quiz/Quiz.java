@@ -113,14 +113,15 @@ public class Quiz extends AppCompatActivity {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
         }
 
-        if(currentQuestion == 1)
+        if(currentQuestion == 2)
         {
             finish();
             startActivity(new Intent(Quiz.this, Result.class));
-        }
-
-        currentQuestion++;
-        showQuestion();
+        }else
+            {
+                currentQuestion++;
+                showQuestion();
+            }
     }
 
 }
