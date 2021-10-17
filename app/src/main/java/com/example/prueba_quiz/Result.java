@@ -12,16 +12,17 @@ public class Result extends AppCompatActivity {
 
     ImageButton BExitFinal;
     ImageButton BReset;
-    String result;
+    int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        result = getIntent().getStringExtra("result");
+        result = getIntent().getIntExtra("result",0);
         TextView resultFinal = findViewById(R.id.textResult);
-        resultFinal.setText(result);
+        String s=Integer.toString(result);
+        resultFinal.setText(s);
 
         configureButton();
     }

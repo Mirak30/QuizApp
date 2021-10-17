@@ -81,6 +81,7 @@
         android:textColor="#544FB0"
         android:textSize="50sp"
         android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textScore" />
