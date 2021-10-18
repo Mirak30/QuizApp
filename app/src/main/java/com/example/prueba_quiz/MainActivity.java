@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         BStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Quiz.class));
+                startActivity(new Intent(MainActivity.this, Options.class));
             }
         });
+
     }
 }

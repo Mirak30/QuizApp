@@ -7,6 +7,21 @@
     android:background="@drawable/bgapp"
     tools:context=".Options">
 
+    <ImageButton
+        android:id="@+id/BGoBackOpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@android:drawable/ic_delete"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/textTitle2"
         android:layout_width="wrap_content"
@@ -36,10 +51,34 @@
         android:id="@+id/spinnerQuest"
         android:layout_width="179dp"
         android:layout_height="55dp"
-        android:layout_marginTop="72dp"
-        android:entries="3"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagesCheck"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/buttonStartQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/bgbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerQuest"
+        app:srcCompat="@drawable/bgbtn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start quiz"
+        android:textColor="#544FB0"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonStartQuiz"
+        app:layout_constraintEnd_toEndOf="@+id/buttonStartQuiz"
+        app:layout_constraintStart_toStartOf="@+id/buttonStartQuiz"
+        app:layout_constraintTop_toTopOf="@+id/buttonStartQuiz" />
 </androidx.constraintlayout.widget.ConstraintLayout>
