@@ -21,17 +21,27 @@ public class Quiz extends AppCompatActivity {
     private TextView textQuestion;
     private int partialRes;
     boolean correct = false;
-    Intent i;
+    Intent i,opt;
+    String difficulty;
+    boolean images;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-i=new Intent(Quiz.this, QuizImages.class);
+        opt=getIntent();
+        difficulty=opt.getStringExtra("Difficulty");
+        images=opt.getBooleanExtra("images",true);
+        if(images){
+            i=new Intent(Quiz.this, QuizImages.class);
+        }else{
+            i=new Intent(Quiz.this, Result.class);
+        }
+
         textQuestion = findViewById(R.id.textQuestion);
         allQuestions = getResources().getStringArray(R.array.all_question);
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
-partialRes=0;
+        partialRes=0;
 
         showQuestion();
         configureButton(correctAnswer);
