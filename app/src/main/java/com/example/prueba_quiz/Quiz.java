@@ -38,7 +38,12 @@ public class Quiz extends AppCompatActivity {
         }
 
         textQuestion = findViewById(R.id.textQuestion);
-        allQuestions = getResources().getStringArray(R.array.all_question);
+        if(difficulty.equals("Easy")){
+            allQuestions = getResources().getStringArray(R.array.easyQuestions);
+        }else if(difficulty.equals("Difficult")){
+            allQuestions = getResources().getStringArray(R.array.diffQuestions);
+        }
+
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
         partialRes=0;
