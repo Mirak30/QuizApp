@@ -26,6 +26,45 @@
             solar?;Tierra;*Mercurio;Venus;Marte
         </item>
     </array>
+    <array name="diffQuestions">
+        <item>¿Cuándo se firmó la declaración de independencia de EEUU?;7 de agosto de 1775;*4 de julio de 1776;19 de septiembre de 1780;1 de abril de 1773
+        </item>
+        <item>¿Cuál es la capital de Costa de Marfil?;*Yamusukro;Gaborone;Windhoek;Jartum
+        </item>
+        <item>¿Qué actriz protagonizó la película "Desayuno con diamantes"?;Grace Kelly;Elizabeth Taylor;Marilyn Monroe;*Audrey Hepburn</item>
+        <item>¿Qué país produce más café en el mundo?;Colombia;Indonesia;Vietnam;*Brasil</item>
+        <item>¿Cuál fue el primer refresco que se llevó al espacio?;*Coca Cola;Fanta;Snapple;Pepsi
+        </item>
+        <item>¿Cuánto pesa el disfraz de Chewbacca?;7,70kg;*3,60 kg;2,70 kg;6,80 kg</item>
+        <item>¿Quién fue la primera mujer en correr un maratón?;*Katherine Switzer;Charlotte Cooper;Pepita Cuevas;Lusia Harris-Stewart
+        </item>
+        <item>¿Qué animal es la mascota del Giro de Italia?;Un lince;*Un lobo;Un gallo;Un toro
+        </item>
+        <item>¿Dónde se inventó el baloncesto?;Arizona;Texas;*Massachussets;Colorado</item>
+        <item>¿Qué órgano produce la bilirrubina?;El páncreas;*El hígado;El estómago;El intestino delgado
+        </item>
+    </array>
+    <array name="easyQuestions">
+        <item>¿Cuántas patas tiene una araña?;*8;6;12;10
+        </item>
+        <item>¿Cuál es el libro más conocido de Miguel de Cervantes?;*El Quijote;Plenilunio;La colmena;Fray Perico y su borrico
+        </item>
+        <item>¿Cuánto suman los ángulos de un triángulo?;120º;240º;360º;*180º</item>
+        <item>¿Cuántos kilos son una tonelada?;500;*1000;2000;5000</item>
+        <item>¿Cuál es el planeta más pequeño de nuestro sistema
+            solar?;Tierra;*Mercurio;Venus;Marte
+        </item>
+        <item>¿Quién pintó la Mona Lisa?;*Leonardo da Vinci;Goya;Velázquez;Miró</item>
+        <item>En Los tres cerditos, ¿de qué está hecha la casa más
+            fuerte?;*Ladrillos;Palos;Paja;Bambú
+        </item>
+        <item>¿Qué personaje de Disney de La Sirenita canta la canción Bésala?;Flounder;Príncipe
+            Eric;Úrsula;*Sebastián
+        </item>
+        <item>¿En qué país esta Praga?;España;Brasil;*República Checa;Inglaterra</item>
+        <item>¿Cómo se llama el proceso por el que las plantas extraen energía de la luz solar?;Simbiosis;*Fotosíntesis;Ciclo del agua;Meiosis
+        </item>
+    </array>
     <array name="image_question">
         <item>¿Cuál es la bandera de Rusia?;Serbia;Croacia;Estonia;*Rusia
         </item>
