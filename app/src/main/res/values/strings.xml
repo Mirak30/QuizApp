@@ -5,15 +5,33 @@
     <string name="incorrectAnswer">Incorrecto...</string>
 
     <array name="all_question">
-        <item>¿Qué va hacia arriba y hacia abajo, pero esta en el mismo lugar?;*Escaleras;Globo;Gas;Ondas</item>
-        <item>¿De qué película es el príncipe azul?;Sirenita;*Cenicienta;Bella Durmiente;Mulán</item>
+        <item>¿Qué va hacia arriba y hacia abajo, pero esta en el mismo
+            lugar?;*Escaleras;Globo;Gas;Ondas
+        </item>
+        <item>¿De qué película es el príncipe azul?;Sirenita;*Cenicienta;Bella Durmiente;Mulán
+        </item>
         <item>¿Cuál es el animal nacional de Escocia?;Caballo;Lobo;Vaca;*Unicornio</item>
         <item>¿Qué país produce más café en el mundo?;Colombia;Indonesia;Vietnam;*Brasil</item>
-        <item>¿Cuál fue el primer refresco que se llevó al espacio?;*Coca Cola;Fanta;Snapple;Pepsi</item>
+        <item>¿Cuál fue el primer refresco que se llevó al espacio?;*Coca Cola;Fanta;Snapple;Pepsi
+        </item>
         <item>¿Cuánto pesa el disfraz de Chewbacca?;7,70kg;*3,60 kg;2,70 kg;6,80 kg</item>
-        <item>En Los tres cerditos, ¿de qué está hecha la casa más fuerte?;*Ladrillos;Palos;Paja;Bambú</item>
-        <item>¿Qué personaje de Disney de La Sirenita canta la canción Bésala?;Flounder;Príncipe Eric;Úrsula;*Sebastián</item>
+        <item>En Los tres cerditos, ¿de qué está hecha la casa más
+            fuerte?;*Ladrillos;Palos;Paja;Bambú
+        </item>
+        <item>¿Qué personaje de Disney de La Sirenita canta la canción Bésala?;Flounder;Príncipe
+            Eric;Úrsula;*Sebastián
+        </item>
         <item>¿En qué país esta Praga?;España;Brasil;*República Checa;Inglaterra</item>
-        <item>¿Cuál es el planeta más pequeño de nuestro sistema solar?;Tierra;*Mercurio;Venus;Marte</item>
+        <item>¿Cuál es el planeta más pequeño de nuestro sistema
+            solar?;Tierra;*Mercurio;Venus;Marte
+        </item>
     </array>
+    <array name="image_question">
+        <item>¿Cuál es la bandera de Rusia?;Serbia;Croacia;Estonia;*Rusia
+        </item>
+        <item>¿Cuál no es una marca de coches?;Suzuki;Seat;*CAT;Renault
+        </item>
+    </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

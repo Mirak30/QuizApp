@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bgapp"
     android:noHistory="true"
-    tools:context=".Quiz">
+    tools:context=".QuizImages">
 
     <TextView
         android:id="@+id/textTitle"
@@ -27,7 +27,6 @@
         android:layout_height="156dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTitle"
         app:srcCompat="@drawable/bgpurple" />
@@ -49,12 +48,13 @@
 
     <ImageButton
         android:id="@+id/ButtonOp1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="130dp"
+        android:layout_height="97dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/bgbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonOp3"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonOp2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/bgbtn"
@@ -62,42 +62,46 @@
 
     <ImageButton
         android:id="@+id/ButtonOp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_width="130dp"
+        android:layout_height="97dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/bgbtn"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonOp4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonOp1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ButtonOp1"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/bgbtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/ButtonOp3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_width="130dp"
+        android:layout_height="97dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/bgbtn"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonOp4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonOp2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/bgbtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/ButtonOp4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_width="130dp"
+        android:layout_height="97dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/bgbtn"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonOp3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ButtonOp3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.501"
         app:srcCompat="@drawable/bgbtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -109,6 +113,7 @@
         android:textColor="#544FB0"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ButtonOp1"
         app:layout_constraintEnd_toEndOf="@+id/ButtonOp1"
         app:layout_constraintStart_toStartOf="@+id/ButtonOp1"
@@ -122,6 +127,7 @@
         android:textColor="#544FB0"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ButtonOp2"
         app:layout_constraintEnd_toEndOf="@+id/ButtonOp2"
         app:layout_constraintStart_toStartOf="@+id/ButtonOp2"
@@ -135,6 +141,7 @@
         android:textColor="#544FB0"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ButtonOp3"
         app:layout_constraintEnd_toEndOf="@+id/ButtonOp3"
         app:layout_constraintStart_toStartOf="@+id/ButtonOp3"
@@ -148,6 +155,7 @@
         android:textColor="#544FB0"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ButtonOp4"
         app:layout_constraintEnd_toEndOf="@+id/ButtonOp4"
         app:layout_constraintStart_toStartOf="@+id/ButtonOp4"
@@ -167,5 +175,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
