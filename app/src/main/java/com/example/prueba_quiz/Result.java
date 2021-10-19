@@ -43,7 +43,7 @@ public class Result extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(new Intent(Result.this, Quiz.class));
+                startActivity(new Intent(Result.this, Options.class));
             }
         });
 
