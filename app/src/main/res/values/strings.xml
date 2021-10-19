@@ -65,10 +65,16 @@
         <item>¿Cómo se llama el proceso por el que las plantas extraen energía de la luz solar?;Simbiosis;*Fotosíntesis;Ciclo del agua;Meiosis
         </item>
     </array>
-    <array name="image_question">
+    <array name="image_question_Easy">
         <item>¿Cuál es la bandera de Rusia?;Serbia;Croacia;Estonia;*Rusia
         </item>
         <item>¿Cuál no es una marca de coches?;Suzuki;Seat;*CAT;Renault
+        </item>
+    </array>
+    <array name="image_question_Hard">
+        <item>¿Cuál es la bandera de Okayama?;Bruselas;Pascua;*Okayama;Lesotho
+        </item>
+        <item>¿Cuál es la bandera de Amberes?;*Amberes;Kiribati;Bretania;Cornualles
         </item>
     </array>
     <!-- TODO: Remove or change this placeholder text -->
