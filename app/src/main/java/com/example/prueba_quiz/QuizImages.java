@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 public class QuizImages extends AppCompatActivity {
 
@@ -18,45 +19,65 @@ public class QuizImages extends AppCompatActivity {
     private int id_images2[] = {R.drawable.cr,R.drawable.seat};
     private int id_images3[] = {R.drawable.es,R.drawable.cat};
     private int id_images4[] = {R.drawable.ru,R.drawable.renault};
+    private int[][] idImagesEasy= {{R.drawable.rs,R.drawable.cr,R.drawable.es,R.drawable.ru},{R.drawable.suzuki,R.drawable.seat,R.drawable.cat,R.drawable.renault}};
+    private int[][] idImagesDifficult= {{R.drawable.bru,R.drawable.pas,R.drawable.ok,R.drawable.les},{R.drawable.amberes,R.drawable.kiribati,R.drawable.bretana,R.drawable.cornualles}};
+
 
     private int correctAnswer;
-    private String[] imageQuestions;
+    private String[] imageEasyQuestions;
+    private String[] imageDiffQuestions;
     private boolean[] answerIsCorrect;
     private int currentQuestion;
     private int counter;
     private TextView textQuestion;
     int partialRes;
-    Intent i;
+    Intent i, intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_images);
-        Intent intent=getIntent();
+        intent=getIntent();
         i=new Intent(QuizImages.this, Result.class);
         partialRes=intent.getIntExtra("result",0);
         currentQuestion= 0;
         textQuestion = findViewById(R.id.textQuestion);
-        imageQuestions = getResources().getStringArray(R.array.image_question);
         counter= 0;
-        answerIsCorrect = new boolean[imageQuestions.length];
+        imageEasyQuestions=getResources().getStringArray(R.array.image_question_Easy);
+        imageDiffQuestions=getResources().getStringArray(R.array.image_question_Hard);
+        answerIsCorrect = new boolean[4];
         BOp1 = findViewById(R.id.ButtonOp1);
         BOp2 = findViewById(R.id.ButtonOp2);
         BOp3 = findViewById(R.id.ButtonOp3);
         BOp4 = findViewById(R.id.ButtonOp4);
+
         showQuestion();
         configureButton(correctAnswer);
     }
 
     private void showQuestion() {
-        String q = imageQuestions[counter];
+        String q="";
+        if(intent.getStringExtra("Difficulty").equals("Easy")) {
+             q = imageEasyQuestions[counter];
+        }else{
+             q = imageDiffQuestions[counter];
+        }
+
         String[] parts = q.split(";");
 
         textQuestion.setText(parts[0]);
+    if(intent.getStringExtra("Difficulty").equals("Easy")){
+        BOp1.setImageResource(idImagesEasy[counter][0]);
+        BOp2.setImageResource(idImagesEasy[counter][1]);
+        BOp3.setImageResource(idImagesEasy[counter][2]);
+        BOp4.setImageResource(idImagesEasy[counter][3]);
+    }else{
 
-            BOp1.setImageResource(id_images1[counter]);
-            BOp2.setImageResource(id_images2[counter]);
-            BOp3.setImageResource(id_images3[counter]);
-            BOp4.setImageResource(id_images4[counter]);
+        BOp1.setImageResource(idImagesDifficult[counter][0]);
+        BOp2.setImageResource(idImagesDifficult[counter][1]);
+        BOp3.setImageResource(idImagesDifficult[counter][2]);
+        BOp4.setImageResource(idImagesDifficult[counter][3]);
+    }
+
         for(int i=0; i < id_answers.length; i++) {
             String answer = parts[i + 1];
             if (answer.charAt(0) == '*') {

@@ -36,7 +36,7 @@ public class Quiz extends AppCompatActivity {
         }else{
             i=new Intent(Quiz.this, Result.class);
         }
-
+        i.putExtra("Difficulty",difficulty);
         textQuestion = findViewById(R.id.textQuestion);
         if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.easyQuestions);
@@ -129,6 +129,7 @@ public class Quiz extends AppCompatActivity {
             //answerIsCorrect[currentQuestion] = true;
             partialRes++;
             i.putExtra("result", partialRes);
+
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
