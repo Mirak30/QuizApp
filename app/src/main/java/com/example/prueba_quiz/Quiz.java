@@ -133,6 +133,7 @@ public class Quiz extends AppCompatActivity {
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
+            i.putExtra("result", partialRes);
         }
 
         if(currentQuestion == 9)

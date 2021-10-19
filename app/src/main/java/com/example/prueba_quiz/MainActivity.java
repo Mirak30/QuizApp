@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         BStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(MainActivity.this, Options.class));
             }
         });
