@@ -6,81 +6,75 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
 
-public class QuizImages extends AppCompatActivity {
+public class QuizQuestionImages extends AppCompatActivity {
 
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
-    private String difficulty;
+    private ImageView question;
+    private int imagesEasy[]={R.drawable.reinaisabel};
+    private int imagesHard[]={R.drawable.saneduardo};
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
-    private int[][] idImagesEasy= {{R.drawable.rs,R.drawable.cr,R.drawable.es,R.drawable.ru},{R.drawable.suzuki,R.drawable.seat,R.drawable.cat,R.drawable.renault}};
-    private int[][] idImagesDifficult= {{R.drawable.bru,R.drawable.pas,R.drawable.ok,R.drawable.les},{R.drawable.amberes,R.drawable.kiribati,R.drawable.bretana,R.drawable.cornualles}};
-
     private int correctAnswer;
-    private String[] imageEasyQuestions;
-    private String[] imageDiffQuestions;
+    private String[] allQuestions;
     private boolean[] answerIsCorrect;
     private int currentQuestion;
-    private int counter;
     private TextView textQuestion;
-    int partialRes;
-    Intent i, intent;
+    private int partialRes;
+    boolean correct = false;
+    Intent i,opt;
+    String difficulty;
+    boolean images;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_images);
-        intent=getIntent();
-        i=new Intent(QuizImages.this, QuizQuestionImages.class);
-        partialRes=intent.getIntExtra("result",0);
-        difficulty=intent.getStringExtra("Difficulty");
-        i.putExtra("Difficulty",difficulty);
-        currentQuestion= 0;
+        setContentView(R.layout.activity_quiz_question_images);
+        opt=getIntent();
+        difficulty=opt.getStringExtra("Difficulty");
+        images=opt.getBooleanExtra("images",true);
+        i=new Intent(QuizQuestionImages.this, Result.class);
         textQuestion = findViewById(R.id.textQuestion);
-        counter= 0;
-        imageEasyQuestions=getResources().getStringArray(R.array.image_question_Easy);
-        imageDiffQuestions=getResources().getStringArray(R.array.image_question_Hard);
-        answerIsCorrect = new boolean[4];
-        BOp1 = findViewById(R.id.ButtonOp1);
-        BOp2 = findViewById(R.id.ButtonOp2);
-        BOp3 = findViewById(R.id.ButtonOp3);
-        BOp4 = findViewById(R.id.ButtonOp4);
+        partialRes=opt.getIntExtra("result",0);
+        question=findViewById(R.id.imgQuest);
+        if(difficulty.equals("Easy")){
+            allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Easy);
+        }else if(difficulty.equals("Difficult")){
+            allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
+        }
+
+        currentQuestion = 0;
+        answerIsCorrect = new boolean[allQuestions.length];
 
         showQuestion();
         configureButton(correctAnswer);
     }
 
     private void showQuestion() {
-        String q="";
-        if(difficulty.equals("Easy")) {
-             q = imageEasyQuestions[counter];
+        String q = allQuestions[currentQuestion];
+        if(difficulty.equals("Easy")){
+            question.setImageResource(imagesEasy[currentQuestion]);
+
         }else{
-             q = imageDiffQuestions[counter];
+            question.setImageResource(imagesHard[currentQuestion]);
         }
 
         String[] parts = q.split(";");
 
         textQuestion.setText(parts[0]);
-    if(intent.getStringExtra("Difficulty").equals("Easy")){
-        BOp1.setImageResource(idImagesEasy[counter][0]);
-        BOp2.setImageResource(idImagesEasy[counter][1]);
-        BOp3.setImageResource(idImagesEasy[counter][2]);
-        BOp4.setImageResource(idImagesEasy[counter][3]);
-    }else{
 
-        BOp1.setImageResource(idImagesDifficult[counter][0]);
-        BOp2.setImageResource(idImagesDifficult[counter][1]);
-        BOp3.setImageResource(idImagesDifficult[counter][2]);
-        BOp4.setImageResource(idImagesDifficult[counter][3]);
-    }
-
-        for(int i=0; i < id_answers.length; i++) {
-            String answer = parts[i + 1];
-            if (answer.charAt(0) == '*') {
+        for(int i=0; i < id_answers.length; i++)
+        {
+            TextView tb = (TextView) findViewById(id_answers[i]);
+            String answer = parts[i+1];
+            if(answer.charAt(0) == '*')
+            {
                 correctAnswer = i;
+                answer = answer.substring(1);
             }
+            tb.setText(answer);
         }
     }
 
@@ -142,19 +136,19 @@ public class QuizImages extends AppCompatActivity {
             //answerIsCorrect[currentQuestion] = true;
             partialRes++;
             i.putExtra("result", partialRes);
+
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
         }
 
-        if(currentQuestion == 1)
+        if(currentQuestion == 0)
         {
             finish();
             startActivity(i);
         }else
         {
             currentQuestion++;
-            counter++;
             showQuestion();
         }
     }
