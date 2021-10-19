@@ -1,7 +1,9 @@
 package com.example.prueba_quiz;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +15,6 @@ public class Result extends AppCompatActivity {
     ImageButton BExitFinal;
     ImageButton BReset;
     int result;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,14 +28,35 @@ public class Result extends AppCompatActivity {
         configureButton();
     }
 
+    public void showRatingDialog(){
+        String[] options={"Sí","No"};
+        AlertDialog.Builder alert=new AlertDialog.Builder(Result.this);
+        alert.setTitle("¿Disfrutaste de la aplicación?");
+        alert.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                finish();
+                System.exit(0);
+            }
+        });
+        alert.show();
+    }
+
     public void configureButton()
     {
         BExitFinal = findViewById(R.id.BExitFinal);
         BExitFinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-                System.exit(0);
+                showRatingDialog();
+
             }
         });
 
@@ -42,6 +64,7 @@ public class Result extends AppCompatActivity {
         BReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 finish();
                 startActivity(new Intent(Result.this, Options.class));
             }

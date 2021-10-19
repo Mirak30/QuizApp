@@ -140,6 +140,7 @@ public class QuizQuestionImages extends AppCompatActivity {
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
+            i.putExtra("result", partialRes);
         }
 
         if(currentQuestion == 0)

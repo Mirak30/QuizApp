@@ -145,6 +145,7 @@ public class QuizImages extends AppCompatActivity {
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
+            i.putExtra("result", partialRes);
         }
 
         if(currentQuestion == 1)
