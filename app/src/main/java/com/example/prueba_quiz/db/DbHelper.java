@@ -11,9 +11,8 @@ import com.example.prueba_quiz.MainActivity;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "questions.db";
-    private static final String TABLE_QUESTIONS = "t_questions";
     private static final String TABLE_EASYANIME = "t_EAnime";
     private static final String TABLE_DIFICULTANIME = "t_DAnime";
     private static final String TABLE_EASYCINE = "t_ECine";
@@ -22,10 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String TABLE_DIFICULTHISTORY = "t_DHistory";
     private static final String TABLE_EASYVIDEOGAMES = "t_EVideogames";
     private static final String TABLE_DIFICULTVIDEOGAMES = "t_DVideogames";
-    private static final String TABLE_CATEGORYANIME = "t_cAnime";
-    private static final String TABLE_CATEGORYCINE = "t_cCine";
-    private static final String TABLE_CATEGORYHISTORY = "t_cHistory";
-    private static final String TABLE_CATEGORYVIDEOGAMES = "t_cVideogames";
+
 
     public DbHelper(@Nullable Context context) {
         super(context,DATABASE_NAME, null, DATABASE_VERSION);
@@ -98,49 +94,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 "DAnswerVideogames4 TEXT NOT NULL," +
                 "DCorrectAnswerVideogames TEXT NOT NULL)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CATEGORYANIME + "(" +
-                "EasyAnime_ID INTEGER," +
-                "DificultAnime_ID INTEGER," +
-                "CONSTRAINT PK_Anime_ID PRIMARY KEY (EasyAnime_ID, DificultAnime_ID),"+
-                "FOREIGN KEY (EasyAnime_ID) REFERENCES " + TABLE_EASYANIME + "(EAnime_ID)," +
-                "FOREIGN KEY (DificultAnime_ID) REFERENCES " + TABLE_DIFICULTANIME + "(DAnime_ID))");
-       sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CATEGORYCINE + "(" +
-                "EasyCine_ID INTEGER," +
-                "DificultCine_ID INTEGER," +
-                "CONSTRAINT PK_Cine_ID PRIMARY KEY (EasyCine_ID, DificultCine_ID),"+
-                "FOREIGN KEY (EasyCine_ID) REFERENCES " + TABLE_EASYCINE + "(ECine_ID)," +
-                "FOREIGN KEY (DificultCine_ID) REFERENCES " + TABLE_DIFICULTCINE + "(DCine_ID))");
-       sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CATEGORYHISTORY + "(" +
-                "EasyHistory_ID INTEGER," +
-                "DificultHistory_ID INTEGER," +
-                "CONSTRAINT PK_History_ID PRIMARY KEY (EasyHistory_ID, DificultHistory_ID),"+
-                "FOREIGN KEY (EasyHistory_ID) REFERENCES " + TABLE_EASYHISTORY + "(EHistory_ID)," +
-                "FOREIGN KEY (DificultHistory_ID) REFERENCES " + TABLE_DIFICULTHISTORY + "(DHistory_ID))");
-       sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CATEGORYVIDEOGAMES + "(" +
-                "EasyVideogames_ID INTEGER," +
-                "DificultVideogames_ID INTEGER," +
-                "CONSTRAINT PK_Videogames_ID PRIMARY KEY (EasyVideogames_ID, DificultVideogames_ID),"+
-                "FOREIGN KEY (EasyVideogames_ID) REFERENCES " + TABLE_EASYVIDEOGAMES + "(EVideogames_ID)," +
-                "FOREIGN KEY (DificultVideogames_ID) REFERENCES " + TABLE_DIFICULTVIDEOGAMES + "(DVideogames_ID))");
-
-       sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_QUESTIONS + "(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "CAnime_ID INTEGER," +
-                "CCine_ID INTEGER," +
-                "CHistory_ID INTEGER," +
-                "CVideogames_ID INTEGER," +
-                "FOREIGN KEY (CAnime_ID) REFERENCES " + TABLE_CATEGORYANIME + "(PK_Anime_ID)," +
-                "FOREIGN KEY (CCine_ID) REFERENCES " + TABLE_CATEGORYCINE + "(PK_Cine_ID)," +
-                "FOREIGN KEY (CHistory_ID) REFERENCES " + TABLE_CATEGORYHISTORY + "(PK_History_ID)," +
-                "FOREIGN KEY (CVideogames_ID) REFERENCES " + TABLE_CATEGORYVIDEOGAMES + "(PK_Videogames_ID))");
-
-       //sqLiteDatabase.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_QUESTIONS);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYANIME);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTANIME);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYCINE);
@@ -149,10 +107,6 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYHISTORY);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTVIDEOGAMES);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYVIDEOGAMES);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_CATEGORYANIME);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_CATEGORYCINE);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_CATEGORYHISTORY);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_CATEGORYVIDEOGAMES);
         onCreate(sqLiteDatabase);
 
     }
@@ -199,13 +153,41 @@ public class DbHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean insertCategoryAnime(Integer id_E, Integer id_D){
+
+    public boolean insertEasyQuestionCine(String question, String answer1,
+                                           String answer2, String answer3, String answer4,
+                                           String correctAnswer){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("EasyAnime_ID", id_E);
-        contentValues.put("DificultAnime_ID", id_D);
+        contentValues.put("EQuestionCine", question);
+        contentValues.put("EAnswerCine1", answer1);
+        contentValues.put("EAnswerCine2", answer2);
+        contentValues.put("EAnswerCine3", answer3);
+        contentValues.put("EAnswerCine4", answer4);
+        contentValues.put("ECorrectAnswerCine", correctAnswer);
 
-        long result = db.insert(TABLE_CATEGORYANIME, null, contentValues);
+        long result = db.insert(TABLE_EASYCINE, null, contentValues);
+        if(result == -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public boolean insertDifficultQuestionCine(String question, String answer1,
+                                                String answer2, String answer3, String answer4,
+                                                String correctAnswer){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("DQuestionCine", question);
+        contentValues.put("DAnswerCine1", answer1);
+        contentValues.put("DAnswerCine2", answer2);
+        contentValues.put("DAnswerCine3", answer3);
+        contentValues.put("DAnswerCine4", answer4);
+        contentValues.put("DCorrectAnswerCine", correctAnswer);
+
+        long result = db.insert(TABLE_DIFICULTCINE, null, contentValues);
         if(result == -1)
         {
             return false;
@@ -215,4 +197,89 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean insertEasyQuestionHistory(String question, String answer1,
+                                          String answer2, String answer3, String answer4,
+                                          String correctAnswer){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("EQuestionHistory", question);
+        contentValues.put("EAnswerHistory1", answer1);
+        contentValues.put("EAnswerHistory2", answer2);
+        contentValues.put("EAnswerHistory3", answer3);
+        contentValues.put("EAnswerHistory4", answer4);
+        contentValues.put("ECorrectAnswerHistory", correctAnswer);
+
+        long result = db.insert(TABLE_EASYHISTORY, null, contentValues);
+        if(result == -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public boolean insertDifficultQuestionHistory(String question, String answer1,
+                                               String answer2, String answer3, String answer4,
+                                               String correctAnswer){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("DQuestionHistory", question);
+        contentValues.put("DAnswerHistory1", answer1);
+        contentValues.put("DAnswerHistory2", answer2);
+        contentValues.put("DAnswerHistory3", answer3);
+        contentValues.put("DAnswerHistory4", answer4);
+        contentValues.put("DCorrectAnswerHistory", correctAnswer);
+
+        long result = db.insert(TABLE_DIFICULTHISTORY, null, contentValues);
+        if(result == -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean insertEasyQuestionVideogames(String question, String answer1,
+                                             String answer2, String answer3, String answer4,
+                                             String correctAnswer){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("EQuestionVideogames", question);
+        contentValues.put("EAnswerVideogames1", answer1);
+        contentValues.put("EAnswerVideogames2", answer2);
+        contentValues.put("EAnswerVideogames3", answer3);
+        contentValues.put("EAnswerVideogames4", answer4);
+        contentValues.put("ECorrectAnswerVideogames", correctAnswer);
+
+        long result = db.insert(TABLE_EASYVIDEOGAMES, null, contentValues);
+        if(result == -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public boolean insertDifficultQuestionVideogames(String question, String answer1,
+                                                  String answer2, String answer3, String answer4,
+                                                  String correctAnswer){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("DQuestionVideogames", question);
+        contentValues.put("DAnswerVideogames1", answer1);
+        contentValues.put("DAnswerVideogames2", answer2);
+        contentValues.put("DAnswerVideogames3", answer3);
+        contentValues.put("DAnswerVideogames4", answer4);
+        contentValues.put("DCorrectAnswerVideogames", correctAnswer);
+
+        long result = db.insert(TABLE_DIFICULTVIDEOGAMES, null, contentValues);
+        if(result == -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
