@@ -22,12 +22,12 @@
             Eric;Úrsula;*Sebastián
         </item>
         <item>¿En qué país esta Praga?;España;Brasil;*República Checa;Inglaterra</item>
-        <item>¿Cuál es el planeta más pequeño de nuestro sistema
-            solar?;Tierra;*Mercurio;Venus;Marte
+        <item>El planeta más pequeño del sistema
+            solar es...;Tierra;*Mercurio;Venus;Marte
         </item>
     </array>
     <array name="diffQuestions">
-        <item>¿Cuándo se firmó la declaración de independencia de EEUU?;7 de agosto de 1775;*4 de
+        <item>Se firmó la declaración de independencia de EEUU el...;7 de agosto de 1775;*4 de
             julio de 1776;19 de septiembre de 1780;1 de abril de 1773
         </item>
         <item>¿Cuál es la capital de Costa de Marfil?;*Yamusukro;Gaborone;Windhoek;Jartum
@@ -57,8 +57,8 @@
         </item>
         <item>¿Cuánto suman los ángulos de un triángulo?;120º;240º;360º;*180º</item>
         <item>¿Cuántos kilos son una tonelada?;500;*1000;2000;5000</item>
-        <item>¿Cuál es el planeta más pequeño de nuestro sistema
-            solar?;Tierra;*Mercurio;Venus;Marte
+        <item>El planeta más pequeño del sistema
+            solar es...;Tierra;*Mercurio;Venus;Marte
         </item>
         <item>¿Quién pintó la Mona Lisa?;*Leonardo da Vinci;Goya;Velázquez;Miró</item>
         <item>En Los tres cerditos, ¿de qué está hecha la casa más
