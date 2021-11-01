@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class Options extends AppCompatActivity {
 
-
     Spinner nQuest;
     String opt[]={"Easy","Difficult"};
     CheckBox imgCheck;

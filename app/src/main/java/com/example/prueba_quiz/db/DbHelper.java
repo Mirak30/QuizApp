@@ -8,20 +8,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.prueba_quiz.MainActivity;
+import com.example.prueba_quiz.TextQuestions;
+
+import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "questions.db";
-    private static final String TABLE_EASYANIME = "t_EAnime";
-    private static final String TABLE_DIFICULTANIME = "t_DAnime";
-    private static final String TABLE_EASYCINE = "t_ECine";
-    private static final String TABLE_DIFICULTCINE = "t_DCine";
-    private static final String TABLE_EASYHISTORY = "t_EHistory";
-    private static final String TABLE_DIFICULTHISTORY = "t_DHistory";
-    private static final String TABLE_EASYVIDEOGAMES = "t_EVideogames";
-    private static final String TABLE_DIFICULTVIDEOGAMES = "t_DVideogames";
-
+    public static final String TABLE_EASYANIME = "t_EAnime";
+    public static final String TABLE_DIFICULTANIME = "t_DAnime";
+    public static final String TABLE_EASYCINE = "t_ECine";
+    public static final String TABLE_DIFICULTCINE = "t_DCine";
+    public static final String TABLE_EASYHISTORY = "t_EHistory";
+    public static final String TABLE_DIFICULTHISTORY = "t_DHistory";
+    public static final String TABLE_EASYVIDEOGAMES = "t_EVideogames";
+    public static final String TABLE_DIFICULTVIDEOGAMES = "t_DVideogames";
 
     public DbHelper(@Nullable Context context) {
         super(context,DATABASE_NAME, null, DATABASE_VERSION);
@@ -108,178 +110,6 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTVIDEOGAMES);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYVIDEOGAMES);
         onCreate(sqLiteDatabase);
-
     }
 
-    public boolean insertEasyQuestionAnime(String question, String answer1,
-                                  String answer2, String answer3, String answer4,
-                                  String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("EQuestionAnime", question);
-        contentValues.put("EAnswerAnime1", answer1);
-        contentValues.put("EAnswerAnime2", answer2);
-        contentValues.put("EAnswerAnime3", answer3);
-        contentValues.put("EAnswerAnime4", answer4);
-        contentValues.put("ECorrectAnswerAnime", correctAnswer);
-
-        long result = db.insert(TABLE_EASYANIME, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-             return true;
-        }
-    }
-    public boolean insertDifficultQuestionAnime(String question, String answer1,
-                                        String answer2, String answer3, String answer4,
-                                        String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("DQuestionAnime", question);
-        contentValues.put("DAnswerAnime1", answer1);
-        contentValues.put("DAnswerAnime2", answer2);
-        contentValues.put("DAnswerAnime3", answer3);
-        contentValues.put("DAnswerAnime4", answer4);
-        contentValues.put("DCorrectAnswerAnime", correctAnswer);
-
-        long result = db.insert(TABLE_DIFICULTANIME, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    public boolean insertEasyQuestionCine(String question, String answer1,
-                                           String answer2, String answer3, String answer4,
-                                           String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("EQuestionCine", question);
-        contentValues.put("EAnswerCine1", answer1);
-        contentValues.put("EAnswerCine2", answer2);
-        contentValues.put("EAnswerCine3", answer3);
-        contentValues.put("EAnswerCine4", answer4);
-        contentValues.put("ECorrectAnswerCine", correctAnswer);
-
-        long result = db.insert(TABLE_EASYCINE, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    public boolean insertDifficultQuestionCine(String question, String answer1,
-                                                String answer2, String answer3, String answer4,
-                                                String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("DQuestionCine", question);
-        contentValues.put("DAnswerCine1", answer1);
-        contentValues.put("DAnswerCine2", answer2);
-        contentValues.put("DAnswerCine3", answer3);
-        contentValues.put("DAnswerCine4", answer4);
-        contentValues.put("DCorrectAnswerCine", correctAnswer);
-
-        long result = db.insert(TABLE_DIFICULTCINE, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    public boolean insertEasyQuestionHistory(String question, String answer1,
-                                          String answer2, String answer3, String answer4,
-                                          String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("EQuestionHistory", question);
-        contentValues.put("EAnswerHistory1", answer1);
-        contentValues.put("EAnswerHistory2", answer2);
-        contentValues.put("EAnswerHistory3", answer3);
-        contentValues.put("EAnswerHistory4", answer4);
-        contentValues.put("ECorrectAnswerHistory", correctAnswer);
-
-        long result = db.insert(TABLE_EASYHISTORY, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    public boolean insertDifficultQuestionHistory(String question, String answer1,
-                                               String answer2, String answer3, String answer4,
-                                               String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("DQuestionHistory", question);
-        contentValues.put("DAnswerHistory1", answer1);
-        contentValues.put("DAnswerHistory2", answer2);
-        contentValues.put("DAnswerHistory3", answer3);
-        contentValues.put("DAnswerHistory4", answer4);
-        contentValues.put("DCorrectAnswerHistory", correctAnswer);
-
-        long result = db.insert(TABLE_DIFICULTHISTORY, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    public boolean insertEasyQuestionVideogames(String question, String answer1,
-                                             String answer2, String answer3, String answer4,
-                                             String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("EQuestionVideogames", question);
-        contentValues.put("EAnswerVideogames1", answer1);
-        contentValues.put("EAnswerVideogames2", answer2);
-        contentValues.put("EAnswerVideogames3", answer3);
-        contentValues.put("EAnswerVideogames4", answer4);
-        contentValues.put("ECorrectAnswerVideogames", correctAnswer);
-
-        long result = db.insert(TABLE_EASYVIDEOGAMES, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    public boolean insertDifficultQuestionVideogames(String question, String answer1,
-                                                  String answer2, String answer3, String answer4,
-                                                  String correctAnswer){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("DQuestionVideogames", question);
-        contentValues.put("DAnswerVideogames1", answer1);
-        contentValues.put("DAnswerVideogames2", answer2);
-        contentValues.put("DAnswerVideogames3", answer3);
-        contentValues.put("DAnswerVideogames4", answer4);
-        contentValues.put("DCorrectAnswerVideogames", correctAnswer);
-
-        long result = db.insert(TABLE_DIFICULTVIDEOGAMES, null, contentValues);
-        if(result == -1)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
 }

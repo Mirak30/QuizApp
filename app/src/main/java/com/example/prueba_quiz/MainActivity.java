@@ -11,18 +11,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prueba_quiz.db.DbHelper;
+import com.example.prueba_quiz.db.DbTextQuestion;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton BExit, BStart;
-    DbHelper db;
+    ArrayList<TextQuestions> listArrayQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_loading);
 
-        db = new DbHelper(this);
+        DbTextQuestion db = new DbTextQuestion(this);
+        listArrayQuestions = new ArrayList<>();
+
         db.insertEasyQuestionAnime("¿Cuál es el apellido de Edward en 'Fullmetal Alchemist'?", "Elmac",
         "Elrond", "Elric", "Edmod", "Elric");
         db.insertEasyQuestionAnime("¿Cuál es el EVA que pilota Shinji en 'Neon Genesis Evangelion'?", "Unidad 02",
@@ -195,24 +199,6 @@ public class MainActivity extends AppCompatActivity {
         db.insertDifficultQuestionVideogames("¿En que año fue lanzado Super Mario 64?", "1995",
                 "1996", "1998", "1999", "1996");
 
-
-        BExit = findViewById(R.id.ButtonExit);
-        BExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                System.exit(0);
-            }
-        });
-
-        BStart = findViewById(R.id.ButtomStart);
-        BStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(MainActivity.this, Options.class));
-            }
-        });
 
     }
 }
