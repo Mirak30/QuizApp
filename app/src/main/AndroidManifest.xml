@@ -13,6 +13,12 @@
             android:name=".QuizQuestionImages"
             android:exported="true" />
         <activity
+            android:name=".Category"
+            android:exported="true" />
+        <activity
+            android:name=".Menu"
+            android:exported="true" />
+        <activity
             android:name=".Options"
             android:exported="true" />
         <activity

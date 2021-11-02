@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_background0"
+    tools:context="Category">
+
+    <ImageButton
+        android:id="@+id/BGoBackOpt"
+        android:layout_width="58dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/boton_regreso"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/boton_regreso"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/imageCategory"
+        android:layout_width="229dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/boton_tipo2"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/boton_tipo2" />
+
+    <TextView
+        android:id="@+id/textCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/harringt"
+        android:text="Category"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintBottom_toBottomOf="@+id/imageCategory"
+        app:layout_constraintEnd_toEndOf="@+id/imageCategory"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/imageCategory"
+        app:layout_constraintTop_toTopOf="@+id/imageCategory"
+        app:layout_constraintVertical_bias="0.441" />
+
+    <ImageButton
+        android:id="@+id/Boptions"
+        android:layout_width="58dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/boton_ajustes"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/boton_ajustes"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/ButtomStartQuiz"
+        android:layout_width="225dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/boton_tipo1"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BCategoryVideogames"
+        app:srcCompat="@drawable/boton_tipo1"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/harringt"
+        android:text="Play"
+        android:textColor="#222222"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ButtomStartQuiz"
+        app:layout_constraintEnd_toEndOf="@+id/ButtomStartQuiz"
+        app:layout_constraintStart_toStartOf="@+id/ButtomStartQuiz"
+        app:layout_constraintTop_toTopOf="@+id/ButtomStartQuiz" />
+
+    <ImageButton
+        android:id="@+id/BCategoryHistory"
+        android:layout_width="132dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/categoria_historia"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/BCategoryCinema"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagesCheck"
+        app:srcCompat="@drawable/categoria_historia"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <CheckBox
+        android:id="@+id/imagesCheck"
+        android:layout_width="277dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@color/orange"
+        android:checked="true"
+        android:fontFamily="@font/harringt"
+        android:text="Questions with images as answers"
+        android:textColor="#111111"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerQuest" />
+
+    <Spinner
+        android:id="@+id/spinnerQuest"
+        android:layout_width="138dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/material_on_primary_disabled"
+        android:popupBackground="@color/white"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCategory"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/BCategoryCinema"
+        android:layout_width="132dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/categoria_cine"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagesCheck"
+        app:srcCompat="@drawable/categoria_cine"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/BCategoryVideogames"
+        android:layout_width="132dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/categoria_videojuegos"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/BCategoryAnime"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BCategoryHistory"
+        app:srcCompat="@drawable/categoria_videojuegos"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/BCategoryAnime"
+        android:layout_width="132dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/categoria_anime"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BCategoryCinema"
+        app:srcCompat="@drawable/categoria_anime"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
