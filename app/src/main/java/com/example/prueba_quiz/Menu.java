@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.VideoView;
 
@@ -13,7 +14,8 @@ import java.util.function.BinaryOperator;
 
 public class Menu extends AppCompatActivity{
 
-    ImageButton BExit, BStart, BOptions;
+    ImageButton BExit, BStart;
+    EditText editName;
     private VideoView videoBg;
     MediaPlayer mMediaPlayer;
     int nCurrentVideoPosition;
@@ -42,14 +44,7 @@ public class Menu extends AppCompatActivity{
             }
         });
 
-        BOptions = findViewById(R.id.Boptions);
-        BOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(Menu.this, Options.class));
-            }
-        });
+        editName = findViewById(R.id.editTextPersonName);
 
         BExit = findViewById(R.id.ButtonExit);
         BExit.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +60,7 @@ public class Menu extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(new Intent(Menu.this, Quiz.class));
+                startActivity(new Intent(Menu.this, Category.class));
             }
         });
     }

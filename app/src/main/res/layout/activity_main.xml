@@ -16,42 +16,78 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editTextPersonName"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="217dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bgapp"
+        android:backgroundTintMode="add"
+        android:ems="10"
+        android:fontFamily="@font/harringt"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:text="Introduce your Name"
+        android:textAlignment="center"
+        android:textColor="#F0F2F1"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
     <ImageButton
         android:id="@+id/ButtomStart"
         android:layout_width="270dp"
         android:layout_height="75dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/boton_tipo1"
-        android:scaleType="centerCrop"
 
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/ButtomSignIn"
         app:srcCompat="@drawable/boton_tipo1"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/ButtonExit"
+        android:id="@+id/ButtomSignIn"
         android:layout_width="270dp"
         android:layout_height="75dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/boton_tipo1"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtomStart"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName"
         app:srcCompat="@drawable/boton_tipo1"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/ButtonExit"
+        android:layout_width="58dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/boton_salir"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/videoView"
+        app:srcCompat="@drawable/boton_salir"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textOp1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="Start Anonymous"
         android:textColor="#111111"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -61,45 +97,31 @@
         app:layout_constraintStart_toStartOf="@+id/ButtomStart"
         app:layout_constraintTop_toTopOf="@+id/ButtomStart" />
 
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="377dp"
+        android:layout_height="315dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonExit"
+        app:srcCompat="@drawable/logo_portada" />
+
+
+
     <TextView
-        android:id="@+id/textOp2"
+        android:id="@+id/textSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exit"
+        android:text="Sign In"
         android:textColor="#111111"
         android:textSize="25sp"
         android:textStyle="bold"
         android:fontFamily="@font/harringt"
-        app:layout_constraintBottom_toBottomOf="@+id/ButtonExit"
-        app:layout_constraintEnd_toEndOf="@+id/ButtonExit"
-        app:layout_constraintStart_toStartOf="@+id/ButtonExit"
-        app:layout_constraintTop_toTopOf="@+id/ButtonExit" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="377dp"
-        android:layout_height="315dp"
-        android:layout_marginTop="88dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_portada" />
-
-    <ImageButton
-        android:id="@+id/Boptions"
-        android:layout_width="66dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/boton_ajustes"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/boton_ajustes"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintBottom_toBottomOf="@+id/ButtomSignIn"
+        app:layout_constraintEnd_toEndOf="@+id/ButtomSignIn"
+        app:layout_constraintStart_toStartOf="@+id/ButtomSignIn"
+        app:layout_constraintTop_toTopOf="@+id/ButtomSignIn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

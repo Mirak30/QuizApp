@@ -8,7 +8,7 @@
     tools:context=".Options">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageOptions"
         android:layout_width="229dp"
         android:layout_height="84dp"
         android:background="@drawable/boton_tipo2"
@@ -108,86 +108,69 @@
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textTitle2"
+        android:id="@+id/textOptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/harringt"
         android:text="Options"
+        android:textColor="#222222"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#222222"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.441" />
-
-    <CheckBox
-        android:id="@+id/imagesCheck"
-        android:layout_width="277dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="92dp"
-        android:buttonTint="@color/orange"
-        android:checked="true"
-        android:fontFamily="@font/harringt"
-        android:text="Questions with images as answers"
-        android:textColor="#111111"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-    <Spinner
-        android:id="@+id/spinnerQuest"
-        android:layout_width="138dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/material_on_primary_disabled"
-        android:popupBackground="@color/white"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageOptions"
+        app:layout_constraintEnd_toEndOf="@+id/imageOptions"
+        app:layout_constraintStart_toStartOf="@+id/imageOptions"
+        app:layout_constraintTop_toTopOf="@+id/imageOptions" />
 
     <ImageButton
-        android:id="@+id/buttonStartQuiz"
+        android:id="@+id/BChangeName"
         android:layout_width="225dp"
         android:layout_height="75dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/boton_tipo1"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName"
         app:srcCompat="@drawable/boton_tipo1"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textOp"
+        android:id="@+id/textChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/harringt"
-        android:text="Registrase"
+        android:text="change"
         android:textColor="#222222"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonStartQuiz"
-        app:layout_constraintEnd_toEndOf="@+id/buttonStartQuiz"
+        app:layout_constraintBottom_toBottomOf="@+id/BChangeName"
+        app:layout_constraintEnd_toEndOf="@+id/BChangeName"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/buttonStartQuiz"
-        app:layout_constraintTop_toTopOf="@+id/buttonStartQuiz"
+        app:layout_constraintStart_toStartOf="@+id/BChangeName"
+        app:layout_constraintTop_toTopOf="@+id/BChangeName"
         app:layout_constraintVertical_bias="0.44" />
 
+
+    <ImageButton
+        android:id="@+id/BAudioOn"
+        android:layout_width="61dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/sonido_on"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/sonido_on"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextPersonName"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="217dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/bgapp"
         android:backgroundTintMode="add"
         android:ems="10"
@@ -196,76 +179,69 @@
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:text="Name"
+        android:text="Your Name"
         android:textAlignment="center"
         android:textColor="#F0F2F1"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="217dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bgapp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:text="Password"
-        android:textColor="#F0F2F1"
+        android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textChangeName" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="61dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="164dp"
-        android:background="@drawable/sonido_on"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.208"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:srcCompat="@drawable/sonido_on"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="152dp"
-        android:background="@drawable/espa_ol"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.621"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:srcCompat="@drawable/espa_ol"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/BEnglish"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/ingles"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.795"
+        app:layout_constraintVertical_bias="0.848"
         app:srcCompat="@drawable/ingles"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/BSpanish"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/espa_ol"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/espa_ol"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textChangeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Change your Name"
+        android:textAlignment="center"
+        android:textColor="#111111"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/harringt"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <Spinner
+        android:id="@+id/spinnerQuestions"
+        android:layout_width="159dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
