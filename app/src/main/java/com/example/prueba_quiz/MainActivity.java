@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
         db.insertDifficultQuestionVideogames("¿En que año fue lanzado Super Mario 64?", "1995",
                 "1996", "1998", "1999", "1996");
 
-
+        finish();
+        startActivity(new Intent(MainActivity.this, Menu.class));
     }
 }
