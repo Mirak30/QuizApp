@@ -30,7 +30,7 @@ public class Category extends AppCompatActivity {
         startQuiz=findViewById(R.id.ButtomStartQuiz);
 
         i=new Intent(this,Quiz.class);
-        in=new Intent(this,MainActivity.class);
+        in=new Intent(this,Menu.class);
 
         arrayAdapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,opt);
         nQuest.setAdapter(arrayAdapter);

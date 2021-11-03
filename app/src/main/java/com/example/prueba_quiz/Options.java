@@ -14,7 +14,8 @@ public class Options extends AppCompatActivity {
 
     Spinner nQuest;
     String opt[]={"5","10","15"};
-    ImageButton goBack,bChangeName;
+    ImageButton goBack,bChangeName,bsound;
+    boolean sound = true;
     EditText changeName;
     Intent in;
     ArrayAdapter<String> arrayAdapter;
@@ -25,6 +26,7 @@ public class Options extends AppCompatActivity {
 
         nQuest = findViewById(R.id.spinnerNumberQuestions);
         goBack = findViewById(R.id.BGoBackOpt);
+        bsound = findViewById(R.id.BSoundOn);
         changeName = findViewById(R.id.editTextPersonName);
 
         in=new Intent(this,Category.class);
@@ -34,6 +36,23 @@ public class Options extends AppCompatActivity {
         confButton();
     }
     private void confButton(){
+
+        bsound.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  if(sound)
+                  {
+                      bsound.setImageResource(R.drawable.sonido_off);
+                      sound = false;
+                  }
+                  else
+                  {
+                      bsound.setImageResource(R.drawable.sonido_on);
+                      sound = true;
+                  }
+
+              }
+        });
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override

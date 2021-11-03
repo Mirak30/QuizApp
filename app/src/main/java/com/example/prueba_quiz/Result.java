@@ -2,6 +2,8 @@ package com.example.prueba_quiz;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,8 +14,10 @@ import android.widget.TextView;
 
 public class Result extends AppCompatActivity {
 
+    RecyclerView recyclerView;
     ImageButton BExitFinal;
     ImageButton BReset;
+    String s1[], s2[];
     int result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,14 @@ public class Result extends AppCompatActivity {
         String s=Integer.toString(result);
         resultFinal.setText(s);
 
+        recyclerView = findViewById(R.id.RecycleViewRanking);
+
+        s1 = getResources().getStringArray(R.array.nameRanking);
+        s2 = getResources().getStringArray(R.array.resultRanking);
+
+        MyAdapter myAdapter = new MyAdapter(this, s1, s2);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         configureButton();
     }
 
@@ -66,7 +78,7 @@ public class Result extends AppCompatActivity {
             public void onClick(View view) {
 
                 finish();
-                startActivity(new Intent(Result.this, Options.class));
+                startActivity(new Intent(Result.this, Category.class));
             }
         });
 

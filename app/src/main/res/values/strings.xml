@@ -1,8 +1,34 @@
 <resources>
-    <string name="app_name">Prueba_Quiz</string>
+    <string name="app_name">Quiz_de_todo_un_poco</string>
 
     <string name="correctAnswer">Correcto!!</string>
     <string name="incorrectAnswer">Incorrecto...</string>
+
+    <string-array name="nameRanking">
+        <item>1. Juan</item>
+        <item>2. Miguel</item>
+        <item>3. Maria</item>
+        <item>4. Karim</item>
+        <item>5. Rosa</item>
+        <item>6. Stefany</item>
+        <item>7. Daryl</item>
+        <item>8. Sail</item>
+        <item>9. Paco</item>
+        <item>10. Elizabeth</item>
+    </string-array>
+
+    <string-array name="resultRanking">
+        <item>Correct: 10</item>
+        <item>Correct: 8</item>
+        <item>Correct: 6</item>
+        <item>Correct: 5</item>
+        <item>Correct: 5</item>
+        <item>Correct: 3</item>
+        <item>Correct: 3</item>
+        <item>Correct: 2</item>
+        <item>Correct: 1</item>
+        <item>Correct: 1</item>
+    </string-array>
 
     <array name="all_question">
         <item>¿Qué va hacia arriba y hacia abajo, pero esta en el mismo
