@@ -9,15 +9,16 @@
 
     <ImageButton
         android:id="@+id/BReset"
-        android:layout_width="230dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="165dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/boton_tipo3"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textResult"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -37,14 +38,15 @@
 
     <ImageButton
         android:id="@+id/BExitFinal"
-        android:layout_width="230dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="165dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/boton_tipo3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BReset"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/BReset"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -66,14 +68,15 @@
         android:id="@+id/textScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/harringt"
         android:text="Your Score:"
         android:textAlignment="center"
         android:textColor="#111111"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:fontFamily="@font/harringt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,14 +84,99 @@
         android:id="@+id/textResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/harringt"
         android:text="0"
         android:textAlignment="center"
         android:textColor="#111111"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:fontFamily="@font/harringt"
+        app:layout_constraintStart_toEndOf="@+id/textCorrects"
+        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="352dp"
+        android:layout_height="386dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/tablon"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textResult" />
+
+    <TextView
+        android:id="@+id/textCorrects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/harringt"
+        android:text="Corrects:"
+        android:textColor="#111111"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textScore" />
+
+    <TextView
+        android:id="@+id/textIncorrects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/harringt"
+        android:text="Incorrects:"
+        android:textColor="#111111"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textResult"
+        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+
+    <TextView
+        android:id="@+id/textPointsIncorrects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/harringt"
+        android:text="0"
+        android:textColor="#111111"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textIncorrects"
+        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+
+    <TextView
+        android:id="@+id/textRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/harringt"
+        android:text="Ranking"
+        android:textColor="#111111"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecycleViewRanking"
+        android:layout_width="280dp"
+        android:layout_height="229dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/textRanking"
+        app:layout_constraintVertical_bias="0.253" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

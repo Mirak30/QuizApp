@@ -3,9 +3,11 @@ package com.example.prueba_quiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +15,14 @@ public class Quiz extends AppCompatActivity {
 
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
+    private ImageView barra;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
+    private int id_Questions5[] = {R.drawable.barra_5_1, R.drawable.barra_5_2, R.drawable.barra_5_3, R.drawable.barra_5_4, R.drawable.barra_5_5};
+    private int id_Questions10[] = {R.drawable.barra_10_1, R.drawable.barra_10_2, R.drawable.barra_10_3, R.drawable.barra_10_4, R.drawable.barra_10_5,
+                                    R.drawable.barra_10_6, R.drawable.barra_10_7, R.drawable.barra_10_8, R.drawable.barra_10_9, R.drawable.barra_10_10};
+    private int id_Questions15[] = {R.drawable.barra_15_1, R.drawable.barra_15_2, R.drawable.barra_15_3, R.drawable.barra_15_4, R.drawable.barra_15_5,
+                                    R.drawable.barra_15_6, R.drawable.barra_15_7, R.drawable.barra_15_8, R.drawable.barra_15_9, R.drawable.barra_15_10,
+                                    R.drawable.barra_15_11, R.drawable.barra_15_12, R.drawable.barra_15_13, R.drawable.barra_15_14, R.drawable.barra_15_15};
     private int correctAnswer;
     private String[] allQuestions;
     private boolean[] answerIsCorrect;
@@ -38,6 +47,7 @@ public class Quiz extends AppCompatActivity {
         }
         i.putExtra("Difficulty",difficulty);
         textQuestion = findViewById(R.id.textQuestion);
+        barra = findViewById(R.id.ImageNumberQuestions);
         if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.easyQuestions);
         }else if(difficulty.equals("Difficult")){
@@ -57,7 +67,7 @@ public class Quiz extends AppCompatActivity {
         String[] parts = q.split(";");
 
         textQuestion.setText(parts[0]);
-
+        barra.setImageResource(id_Questions10[currentQuestion]);
         for(int i=0; i < id_answers.length; i++)
         {
             TextView tb = (TextView) findViewById(id_answers[i]);
@@ -67,6 +77,7 @@ public class Quiz extends AppCompatActivity {
                 correctAnswer = i;
                 answer = answer.substring(1);
             }
+
             tb.setText(answer);
         }
     }
