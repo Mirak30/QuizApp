@@ -78,7 +78,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                System.exit(0);
+                startActivity(new Intent(Quiz.this, Category.class));
             }
         });
 

@@ -11,13 +11,12 @@
         android:id="@+id/imageOptions"
         android:layout_width="229dp"
         android:layout_height="84dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/boton_tipo2"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/boton_tipo2" />
 
     <ImageView
@@ -47,14 +46,15 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="398dp"
-        android:layout_height="261dp"
-        android:layout_marginTop="108dp"
+        android:layout_width="349dp"
+        android:layout_height="245dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/tablon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tablon" />
+        app:layout_constraintTop_toBottomOf="@+id/imageOptions" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -80,8 +80,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="376dp"
-        android:layout_height="273dp"
+        android:layout_width="350dp"
+        android:layout_height="258dp"
         android:background="@drawable/tablon"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,15 +93,13 @@
 
     <ImageButton
         android:id="@+id/BGoBackOpt"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/boton_regreso"
         android:scaleType="centerCrop"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/boton_regreso"
@@ -123,9 +121,9 @@
 
     <ImageButton
         android:id="@+id/BChangeName"
-        android:layout_width="225dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="209dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/boton_tipo1"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,16 +150,16 @@
 
 
     <ImageButton
-        android:id="@+id/BAudioOn"
-        android:layout_width="61dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="64dp"
+        android:id="@+id/BSoundOn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/sonido_on"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/sonido_on"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -192,14 +190,16 @@
         android:id="@+id/BEnglish"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ingles"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.652"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.848"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/BSpanish"
+        app:layout_constraintTop_toBottomOf="@+id/textLanguages"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ingles"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -207,13 +207,13 @@
         android:id="@+id/BSpanish"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/espa_ol"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.322"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textLanguages"
         app:srcCompat="@drawable/espa_ol"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -221,26 +221,73 @@
         android:id="@+id/textChangeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/harringt"
         android:text="Change your Name"
         android:textAlignment="center"
         android:textColor="#111111"
         android:textSize="23sp"
         android:textStyle="bold"
-        android:fontFamily="@font/harringt"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
     <Spinner
-        android:id="@+id/spinnerQuestions"
+        android:id="@+id/spinnerNumberQuestions"
         android:layout_width="159dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:popupBackground="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintHorizontal_bias="0.768"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textLanguages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/harringt"
+        android:text="Languages"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Sound"
+        android:fontFamily="@font/harringt"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Number of questions"
+        android:fontFamily="@font/harringt"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
 

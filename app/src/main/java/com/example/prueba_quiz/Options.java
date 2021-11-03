@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -24,7 +23,7 @@ public class Options extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-        nQuest = findViewById(R.id.spinnerQuestions);
+        nQuest = findViewById(R.id.spinnerNumberQuestions);
         goBack = findViewById(R.id.BGoBackOpt);
         changeName = findViewById(R.id.editTextPersonName);
 
