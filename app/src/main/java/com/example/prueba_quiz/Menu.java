@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.service.notification.NotificationListenerService;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,7 +15,7 @@ import java.util.function.BinaryOperator;
 
 public class Menu extends AppCompatActivity{
 
-    ImageButton BExit, BStart;
+    ImageButton BExit, BStart, BRanking;
     EditText editName;
     private VideoView videoBg;
     MediaPlayer mMediaPlayer;
@@ -61,6 +62,15 @@ public class Menu extends AppCompatActivity{
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(Menu.this, Category.class));
+            }
+        });
+
+        BRanking = findViewById(R.id.BRanking);
+        BRanking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(Menu.this, Ranking.class));
             }
         });
     }

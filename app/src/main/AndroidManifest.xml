@@ -13,6 +13,9 @@
             android:name=".QuizQuestionImages"
             android:exported="true" />
         <activity
+            android:name=".Ranking"
+            android:exported="true" />
+        <activity
             android:name=".Category"
             android:exported="true" />
         <activity

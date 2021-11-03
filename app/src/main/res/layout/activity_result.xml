@@ -173,10 +173,11 @@
         android:id="@+id/RecycleViewRanking"
         android:layout_width="280dp"
         android:layout_height="229dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textRanking"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
