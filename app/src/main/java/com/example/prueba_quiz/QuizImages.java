@@ -27,6 +27,7 @@ public class QuizImages extends AppCompatActivity {
     private int counter;
     private TextView textQuestion;
     int partialRes;
+    int partialResIncorrect;
     Intent i, intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class QuizImages extends AppCompatActivity {
         intent=getIntent();
         i=new Intent(QuizImages.this, QuizQuestionImages.class);
         partialRes=intent.getIntExtra("result",0);
+        partialResIncorrect=intent.getIntExtra("resultIncorrect",0);
         difficulty=intent.getStringExtra("Difficulty");
         i.putExtra("Difficulty",difficulty);
         currentQuestion= 0;
@@ -142,10 +144,13 @@ public class QuizImages extends AppCompatActivity {
             //answerIsCorrect[currentQuestion] = true;
             partialRes++;
             i.putExtra("result", partialRes);
+            i.putExtra("resultIncorrect", partialResIncorrect);
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
+            partialResIncorrect++;
             i.putExtra("result", partialRes);
+            i.putExtra("resultIncorrect", partialResIncorrect);
         }
 
         if(currentQuestion == 1)
