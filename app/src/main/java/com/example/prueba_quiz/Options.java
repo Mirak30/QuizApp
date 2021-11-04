@@ -13,11 +13,11 @@ import android.widget.Spinner;
 public class Options extends AppCompatActivity {
 
     Spinner nQuest;
-    String opt[]={"5","10","15"};
+    String opt[]={"5","10","15"}, name;
     ImageButton goBack,bChangeName,bsound;
     boolean sound = true;
     EditText changeName;
-    Intent in;
+    Intent in, i;
     ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,12 @@ public class Options extends AppCompatActivity {
         goBack = findViewById(R.id.BGoBackOpt);
         bsound = findViewById(R.id.BSoundOn);
         changeName = findViewById(R.id.editTextPersonName);
+        bChangeName = findViewById(R.id.BChangeName);
 
+        name = getIntent().getStringExtra("Player");
+        changeName.setText(name);
+
+        i=new Intent(this, Result.class);
         in=new Intent(this,Category.class);
         arrayAdapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,opt);
         nQuest.setAdapter(arrayAdapter);
@@ -62,7 +67,13 @@ public class Options extends AppCompatActivity {
             }
         });
 
+        bChangeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i.putExtra("NewPlayer",changeName.getText().toString());
 
+            }
+        });
     }
 
 

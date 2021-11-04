@@ -20,6 +20,7 @@ public class Result extends AppCompatActivity {
     String s1[], s2[];
     int result;
     int resultIncorrects;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +30,11 @@ public class Result extends AppCompatActivity {
         resultIncorrects = getIntent().getIntExtra("resultIncorrect",0);
         TextView resultFinal = findViewById(R.id.textResult);
         TextView resultFinalIncorrect = findViewById(R.id.textPointsIncorrects);
+        TextView nameResult = findViewById(R.id.textNameResult);
         String sc=Integer.toString(result);
         String si=Integer.toString(resultIncorrects);
         resultFinal.setText(sc);
         resultFinalIncorrect.setText(si);
-
 
         recyclerView = findViewById(R.id.RecycleViewRanking);
 
@@ -43,6 +44,7 @@ public class Result extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         configureButton();
     }
 

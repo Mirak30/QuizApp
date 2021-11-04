@@ -15,8 +15,9 @@ import java.util.function.BinaryOperator;
 
 public class Menu extends AppCompatActivity{
 
-    ImageButton BExit, BStart, BRanking;
+    ImageButton BExit, BStart, BRanking, BSign;
     EditText editName;
+    Intent i;
     private VideoView videoBg;
     MediaPlayer mMediaPlayer;
     int nCurrentVideoPosition;
@@ -25,6 +26,9 @@ public class Menu extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        i=new Intent(this, Options.class);
+        editName = findViewById(R.id.editTextPersonName);
 
         videoBg = (VideoView) findViewById(R.id.videoView);
 
@@ -45,7 +49,7 @@ public class Menu extends AppCompatActivity{
             }
         });
 
-        editName = findViewById(R.id.editTextPersonName);
+
 
         BExit = findViewById(R.id.ButtonExit);
         BExit.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +75,15 @@ public class Menu extends AppCompatActivity{
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(Menu.this, Ranking.class));
+            }
+        });
+
+        BSign = findViewById(R.id.ButtomSignIn);
+        BSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(Menu.this, Category.class));
             }
         });
     }
