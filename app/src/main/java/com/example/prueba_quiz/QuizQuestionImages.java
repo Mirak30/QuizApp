@@ -36,7 +36,7 @@ public class QuizQuestionImages extends AppCompatActivity {
         opt=getIntent();
         difficulty=opt.getStringExtra("Difficulty");
         images=opt.getBooleanExtra("images",true);
-        i=new Intent(QuizQuestionImages.this, Questionsmultimedia.class);
+        i=new Intent(QuizQuestionImages.this, QuizQuestionSound.class);
         textQuestion = findViewById(R.id.textQuestion);
         partialRes=opt.getIntExtra("result",0);
         partialResIncorrect = opt.getIntExtra("resultIncorrect",0);
