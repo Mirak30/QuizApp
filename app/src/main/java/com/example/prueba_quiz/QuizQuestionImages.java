@@ -24,6 +24,7 @@ public class QuizQuestionImages extends AppCompatActivity {
     private int currentQuestion;
     private TextView textQuestion;
     private int partialRes;
+    private int partialResIncorrect;
     boolean correct = false;
     Intent i,opt;
     String difficulty;
@@ -35,9 +36,10 @@ public class QuizQuestionImages extends AppCompatActivity {
         opt=getIntent();
         difficulty=opt.getStringExtra("Difficulty");
         images=opt.getBooleanExtra("images",true);
-        i=new Intent(QuizQuestionImages.this, Result.class);
+        i=new Intent(QuizQuestionImages.this, Questionsmultimedia.class);
         textQuestion = findViewById(R.id.textQuestion);
         partialRes=opt.getIntExtra("result",0);
+        partialResIncorrect = opt.getIntExtra("resultIncorrect",0);
         question=findViewById(R.id.imgQuest);
         if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Easy);
@@ -135,12 +137,15 @@ public class QuizQuestionImages extends AppCompatActivity {
             Toast.makeText(this,R.string.correctAnswer,Toast.LENGTH_SHORT).show();
             //answerIsCorrect[currentQuestion] = true;
             partialRes++;
+            i.putExtra("resultIncorrect", partialResIncorrect);
             i.putExtra("result", partialRes);
 
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
+            partialResIncorrect++;
             i.putExtra("result", partialRes);
+            i.putExtra("resultIncorrect", partialResIncorrect);
         }
 
         if(currentQuestion == 0)

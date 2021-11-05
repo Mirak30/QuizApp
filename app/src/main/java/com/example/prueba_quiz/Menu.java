@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.service.notification.NotificationListenerService;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,8 +15,9 @@ import java.util.function.BinaryOperator;
 
 public class Menu extends AppCompatActivity{
 
-    ImageButton BExit, BStart;
+    ImageButton BExit, BStart, BRanking, BSign;
     EditText editName;
+    Intent i;
     private VideoView videoBg;
     MediaPlayer mMediaPlayer;
     int nCurrentVideoPosition;
@@ -24,6 +26,9 @@ public class Menu extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        i=new Intent(this, Options.class);
+        editName = findViewById(R.id.editTextPersonName);
 
         videoBg = (VideoView) findViewById(R.id.videoView);
 
@@ -44,7 +49,7 @@ public class Menu extends AppCompatActivity{
             }
         });
 
-        editName = findViewById(R.id.editTextPersonName);
+
 
         BExit = findViewById(R.id.ButtonExit);
         BExit.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +62,24 @@ public class Menu extends AppCompatActivity{
 
         BStart = findViewById(R.id.ButtomStart);
         BStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(Menu.this, Category.class));
+            }
+        });
+
+        BRanking = findViewById(R.id.BRanking);
+        BRanking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(Menu.this, Ranking.class));
+            }
+        });
+
+        BSign = findViewById(R.id.ButtomSignIn);
+        BSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

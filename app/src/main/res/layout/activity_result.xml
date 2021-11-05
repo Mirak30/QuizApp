@@ -68,7 +68,7 @@
         android:id="@+id/textScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/harringt"
         android:text="Your Score:"
         android:textAlignment="center"
@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/harringt"
         android:text="0"
         android:textAlignment="center"
@@ -93,7 +93,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textCorrects"
-        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+        app:layout_constraintTop_toBottomOf="@+id/textNameResult" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -114,35 +114,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/harringt"
         android:text="Corrects:"
         android:textColor="#111111"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+        app:layout_constraintTop_toBottomOf="@+id/textNameResult" />
 
     <TextView
         android:id="@+id/textIncorrects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/harringt"
         android:text="Incorrects:"
         android:textColor="#111111"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textResult"
-        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+        app:layout_constraintTop_toBottomOf="@+id/textNameResult" />
 
     <TextView
         android:id="@+id/textPointsIncorrects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/harringt"
         android:text="0"
@@ -152,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textIncorrects"
-        app:layout_constraintTop_toBottomOf="@+id/textScore" />
+        app:layout_constraintTop_toBottomOf="@+id/textNameResult" />
 
     <TextView
         android:id="@+id/textRanking"
@@ -173,10 +173,25 @@
         android:id="@+id/RecycleViewRanking"
         android:layout_width="280dp"
         android:layout_height="229dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textRanking"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textNameResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Name"
+        android:fontFamily="@font/harringt"
+        android:textColor="#111111"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textScore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

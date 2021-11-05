@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -111,12 +112,11 @@
         app:layout_constraintTop_toBottomOf="@+id/ButtonExit"
         app:srcCompat="@drawable/logo_portada" />
 
-
-
     <TextView
         android:id="@+id/textSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress|textNoSuggestions"
         android:text="Sign In"
         android:textColor="#111111"
         android:textSize="25sp"
@@ -138,6 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.991"
         app:layout_constraintStart_toEndOf="@+id/ButtonExit"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,10 @@ public class Quiz extends AppCompatActivity {
     private boolean[] answerIsCorrect;
     private int currentQuestion;
     private TextView textQuestion;
+    private TextView textCorrect;
+    private TextView textIncorrect;
     private int partialRes;
+    private int partialResIncorrect;
     boolean correct = false;
     Intent i,opt;
     String difficulty;
@@ -47,6 +50,8 @@ public class Quiz extends AppCompatActivity {
         }
         i.putExtra("Difficulty",difficulty);
         textQuestion = findViewById(R.id.textQuestion);
+        textCorrect = findViewById(R.id.textPointCorrects);
+        textIncorrect = findViewById(R.id.textPointsIncorrects);
         barra = findViewById(R.id.ImageNumberQuestions);
         if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.easyQuestions);
@@ -56,7 +61,8 @@ public class Quiz extends AppCompatActivity {
 
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
-        partialRes=0;
+        partialRes = 0;
+        partialResIncorrect = 0;
 
         showQuestion();
         configureButton(correctAnswer);
@@ -68,6 +74,9 @@ public class Quiz extends AppCompatActivity {
 
         textQuestion.setText(parts[0]);
         barra.setImageResource(id_Questions10[currentQuestion]);
+        textCorrect.setText(Integer.toString(partialRes));
+        textIncorrect.setText(Integer.toString(partialResIncorrect));
+
         for(int i=0; i < id_answers.length; i++)
         {
             TextView tb = (TextView) findViewById(id_answers[i]);
@@ -140,10 +149,13 @@ public class Quiz extends AppCompatActivity {
             //answerIsCorrect[currentQuestion] = true;
             partialRes++;
             i.putExtra("result", partialRes);
+            i.putExtra("resultIncorrect", partialResIncorrect);
 
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
+            partialResIncorrect++;
+            i.putExtra("resultIncorrect", partialResIncorrect);
             i.putExtra("result", partialRes);
         }
 

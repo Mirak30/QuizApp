@@ -19,15 +19,22 @@ public class Result extends AppCompatActivity {
     ImageButton BReset;
     String s1[], s2[];
     int result;
+    int resultIncorrects;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
         result = getIntent().getIntExtra("result",0);
+        resultIncorrects = getIntent().getIntExtra("resultIncorrect",0);
         TextView resultFinal = findViewById(R.id.textResult);
-        String s=Integer.toString(result);
-        resultFinal.setText(s);
+        TextView resultFinalIncorrect = findViewById(R.id.textPointsIncorrects);
+        TextView nameResult = findViewById(R.id.textNameResult);
+        String sc=Integer.toString(result);
+        String si=Integer.toString(resultIncorrects);
+        resultFinal.setText(sc);
+        resultFinalIncorrect.setText(si);
 
         recyclerView = findViewById(R.id.RecycleViewRanking);
 
@@ -37,6 +44,7 @@ public class Result extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         configureButton();
     }
 
