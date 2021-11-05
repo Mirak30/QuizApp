@@ -9,59 +9,53 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
-public class QuizQuestionImages extends AppCompatActivity {
+public class Questionsmultimedia extends AppCompatActivity {
 
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
-    private ImageView question;
-    private int imagesEasy[]={R.drawable.reinaisabel};
-    private int imagesHard[]={R.drawable.saneduardo};
-    private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private int correctAnswer;
+    private VideoView question;
     private String[] allQuestions;
     private boolean[] answerIsCorrect;
+    private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private int currentQuestion;
     private TextView textQuestion;
     private int partialRes;
     private int partialResIncorrect;
+
     boolean correct = false;
     Intent i,opt;
     String difficulty;
-    boolean images;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_question_images);
+        setContentView(R.layout.activity_quiz_question_multimedia);
         opt=getIntent();
         difficulty=opt.getStringExtra("Difficulty");
-        images=opt.getBooleanExtra("images",true);
-        i=new Intent(QuizQuestionImages.this, Questionsmultimedia.class);
+
+        i=new Intent(Questionsmultimedia.this, Result.class);
         textQuestion = findViewById(R.id.textQuestion);
         partialRes=opt.getIntExtra("result",0);
         partialResIncorrect = opt.getIntExtra("resultIncorrect",0);
-        question=findViewById(R.id.imgQuest);
-        if(difficulty.equals("Easy")){
-            allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Easy);
-        }else if(difficulty.equals("Difficult")){
-            allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
-        }
 
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
-
+        question=findViewById(R.id.videoQuestions);
         showQuestion();
         configureButton(correctAnswer);
     }
 
     private void showQuestion() {
         String q = allQuestions[currentQuestion];
-        if(difficulty.equals("Easy")){
+        /*if(difficulty.equals("Easy")){
             question.setImageResource(imagesEasy[currentQuestion]);
 
         }else{
             question.setImageResource(imagesHard[currentQuestion]);
-        }
+        }*/
 
         String[] parts = q.split(";");
 
@@ -158,4 +152,5 @@ public class QuizQuestionImages extends AppCompatActivity {
             showQuestion();
         }
     }
+
 }

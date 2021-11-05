@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prueba_Quiz">
         <activity
+            android:name=".Questionsmultimedia"
+            android:exported="true" />
+        <activity
             android:name=".QuizQuestionImages"
             android:exported="true" />
         <activity
