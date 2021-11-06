@@ -47,7 +47,7 @@ public class Result extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        chronometerResult = getIntent().getLongExtra("timeChronometerResult",0);
+        chronometerResult = SystemClock.elapsedRealtime() - getIntent().getLongExtra("timeChronometerResult",0);
         textChronometerResult = findViewById(R.id.textChronometerResult);
         textChronometerResult.setText(Long.toString(chronometerResult));
 

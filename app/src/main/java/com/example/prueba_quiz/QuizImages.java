@@ -56,8 +56,8 @@ public class QuizImages extends AppCompatActivity {
         BOp3 = findViewById(R.id.ButtonOp3);
         BOp4 = findViewById(R.id.ButtonOp4);
 
-        chronometerImage.setBase(antChronometer);
-
+        chronometerImage.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerImage.start();
         showQuestion();
         configureButton(correctAnswer);
     }

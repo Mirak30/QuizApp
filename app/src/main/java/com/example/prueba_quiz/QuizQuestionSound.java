@@ -49,6 +49,8 @@ public class QuizQuestionSound extends AppCompatActivity {
             allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
         }
 
+        chronometerSound.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerSound.start();
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
 

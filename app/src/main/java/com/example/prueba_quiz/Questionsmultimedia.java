@@ -48,6 +48,9 @@ public class Questionsmultimedia extends AppCompatActivity {
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
         question=findViewById(R.id.videoQuestions);
+
+        chronometerMulti.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerMulti.start();
         showQuestion();
         configureButton(correctAnswer);
 

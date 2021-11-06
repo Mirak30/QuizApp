@@ -54,6 +54,8 @@ public class QuizQuestionImages extends AppCompatActivity {
             allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
         }
 
+        chronometerQuestionImage.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerQuestionImage.start();
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
 
