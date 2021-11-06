@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,6 +22,8 @@ public class Result extends AppCompatActivity {
     String s1[], s2[];
     int result;
     int resultIncorrects;
+    long chronometerResult;
+    TextView textChronometerResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,6 @@ public class Result extends AppCompatActivity {
         String si=Integer.toString(resultIncorrects);
         resultFinal.setText(sc);
         resultFinalIncorrect.setText(si);
-
         recyclerView = findViewById(R.id.RecycleViewRanking);
 
         s1 = getResources().getStringArray(R.array.nameRanking);
@@ -44,9 +47,14 @@ public class Result extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        chronometerResult = getIntent().getLongExtra("timeChronometerResult",0);
+        textChronometerResult = findViewById(R.id.textChronometerResult);
+        textChronometerResult.setText(Long.toString(chronometerResult));
 
         configureButton();
     }
+
+
 
     public void showRatingDialog(){
         String[] options={"Sí","No"};

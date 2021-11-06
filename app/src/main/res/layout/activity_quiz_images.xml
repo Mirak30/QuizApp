@@ -8,6 +8,23 @@
     android:noHistory="true"
     tools:context=".QuizImages">
 
+    <Chronometer
+        android:id="@+id/chronometerQuizImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/harringt"
+        android:textAlignment="center"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"></Chronometer>
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="334dp"
@@ -185,11 +202,12 @@
         android:id="@+id/BExitQuiz"
         android:layout_width="58dp"
         android:layout_height="58dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/boton_regreso"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/boton_regreso"

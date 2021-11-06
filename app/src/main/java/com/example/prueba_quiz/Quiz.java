@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ public class Quiz extends AppCompatActivity {
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
     private ImageView barra;
+    Chronometer chronometer;
+    long timeChronometer = 0;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private int id_Questions5[] = {R.drawable.barra_5_1, R.drawable.barra_5_2, R.drawable.barra_5_3, R.drawable.barra_5_4, R.drawable.barra_5_5};
     private int id_Questions10[] = {R.drawable.barra_10_1, R.drawable.barra_10_2, R.drawable.barra_10_3, R.drawable.barra_10_4, R.drawable.barra_10_5,
@@ -53,6 +57,7 @@ public class Quiz extends AppCompatActivity {
         textCorrect = findViewById(R.id.textPointCorrects);
         textIncorrect = findViewById(R.id.textPointsIncorrects);
         barra = findViewById(R.id.ImageNumberQuestions);
+        chronometer = findViewById(R.id.chronometer);
         if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.easyQuestions);
         }else if(difficulty.equals("Difficult")){
@@ -66,6 +71,13 @@ public class Quiz extends AppCompatActivity {
 
         showQuestion();
         configureButton(correctAnswer);
+        startChronometer();
+    }
+
+    private  void startChronometer()
+    {
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
     }
 
     private void showQuestion() {
@@ -147,20 +159,25 @@ public class Quiz extends AppCompatActivity {
         {
             Toast.makeText(this,R.string.correctAnswer,Toast.LENGTH_SHORT).show();
             //answerIsCorrect[currentQuestion] = true;
+
+
             partialRes++;
             i.putExtra("result", partialRes);
             i.putExtra("resultIncorrect", partialResIncorrect);
-
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
             partialResIncorrect++;
             i.putExtra("resultIncorrect", partialResIncorrect);
             i.putExtra("result", partialRes);
+
         }
 
         if(currentQuestion == 9)
         {
+            timeChronometer = SystemClock.elapsedRealtime() - chronometer.getBase();
+            i.putExtra("timeChronometerQuizImage", timeChronometer);
+            chronometer.stop();
             finish();
             startActivity(i);
         }else

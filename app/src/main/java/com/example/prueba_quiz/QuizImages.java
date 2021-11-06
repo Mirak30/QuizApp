@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +17,12 @@ public class QuizImages extends AppCompatActivity {
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
     private String difficulty;
+    Chronometer chronometerImage;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private int[][] idImagesEasy= {{R.drawable.rs,R.drawable.cr,R.drawable.es,R.drawable.ru},{R.drawable.suzuki,R.drawable.seat,R.drawable.cat,R.drawable.renault}};
     private int[][] idImagesDifficult= {{R.drawable.bru,R.drawable.pas,R.drawable.ok,R.drawable.les},{R.drawable.amberes,R.drawable.kiribati,R.drawable.bretana,R.drawable.cornualles}};
-
+    long antChronometer;
+    long sigChronometer = 0;
     private int correctAnswer;
     private String[] imageEasyQuestions;
     private String[] imageDiffQuestions;
@@ -38,9 +42,11 @@ public class QuizImages extends AppCompatActivity {
         partialRes=intent.getIntExtra("result",0);
         partialResIncorrect=intent.getIntExtra("resultIncorrect",0);
         difficulty=intent.getStringExtra("Difficulty");
+        antChronometer = intent.getLongExtra("timeChronometerQuizImage",0);
         i.putExtra("Difficulty",difficulty);
         currentQuestion= 0;
         textQuestion = findViewById(R.id.textQuestion);
+        chronometerImage = findViewById(R.id.chronometerQuizImage);
         counter= 0;
         imageEasyQuestions=getResources().getStringArray(R.array.image_question_Easy);
         imageDiffQuestions=getResources().getStringArray(R.array.image_question_Hard);
@@ -49,6 +55,8 @@ public class QuizImages extends AppCompatActivity {
         BOp2 = findViewById(R.id.ButtonOp2);
         BOp3 = findViewById(R.id.ButtonOp3);
         BOp4 = findViewById(R.id.ButtonOp4);
+
+        chronometerImage.setBase(antChronometer);
 
         showQuestion();
         configureButton(correctAnswer);
@@ -93,7 +101,7 @@ public class QuizImages extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                System.exit(0);
+                startActivity(new Intent(QuizImages.this, Category.class));
             }
         });
 
@@ -145,6 +153,7 @@ public class QuizImages extends AppCompatActivity {
             partialRes++;
             i.putExtra("result", partialRes);
             i.putExtra("resultIncorrect", partialResIncorrect);
+
         }
         else {
             Toast.makeText(this,R.string.incorrectAnswer,Toast.LENGTH_SHORT).show();
@@ -155,6 +164,9 @@ public class QuizImages extends AppCompatActivity {
 
         if(currentQuestion == 1)
         {
+            sigChronometer = SystemClock.elapsedRealtime() - chronometerImage.getBase();
+            i.putExtra("timeChronometerQuestionImage", sigChronometer);
+            chronometerImage.stop();
             finish();
             startActivity(i);
         }else
