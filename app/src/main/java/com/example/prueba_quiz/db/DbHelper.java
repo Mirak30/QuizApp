@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "questions.db";
     public static final String TABLE_EASYANIME = "t_EAnime";
     public static final String TABLE_DIFICULTANIME = "t_DAnime";
@@ -24,6 +24,15 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_DIFICULTHISTORY = "t_DHistory";
     public static final String TABLE_EASYVIDEOGAMES = "t_EVideogames";
     public static final String TABLE_DIFICULTVIDEOGAMES = "t_DVideogames";
+
+    public static final String TABLE_EASYANIME_IMG = "t_EAnimeIMG";
+    public static final String TABLE_DIFICULTANIME_IMG = "t_DAnimeIMG";
+    public static final String TABLE_EASYCINE_IMG = "t_ECineIMG";
+    public static final String TABLE_DIFICULTCINE_IMG = "t_DCineIMG";
+    public static final String TABLE_EASYHISTORY_IMG = "t_EHistoryIMG";
+    public static final String TABLE_DIFICULTHISTORY_IMG = "t_DHistoryIMG";
+    public static final String TABLE_EASYVIDEOGAMES_IMG = "t_EVideogamesIMG";
+    public static final String TABLE_DIFICULTVIDEOGAMES_IMG = "t_DVideogamesIMG";
 
     public DbHelper(@Nullable Context context) {
         super(context,DATABASE_NAME, null, DATABASE_VERSION);
@@ -96,19 +105,107 @@ public class DbHelper extends SQLiteOpenHelper {
                 "DAnswerVideogames4 TEXT NOT NULL," +
                 "DCorrectAnswerVideogames TEXT NOT NULL)");
 
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_EASYANIME_IMG + "(" +
+                "EAnimeImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "EAnimeImg_Quest TEXT NOT NULL," +
+                "EAnimeImg_Img INTEGER NOT NULL," +
+                "EAnimeImg_Answ1 TEXT NOT NULL," +
+                "EAnimeImg_Answ2 TEXT NOT NULL," +
+                "EAnimeImg_Answ3 TEXT NOT NULL," +
+                "EAnimeImg_Answ4 TEXT NOT NULL," +
+                "EAnimeImg_CorrectAnsw TEXT NOT NULL)");
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_DIFICULTANIME_IMG + "(" +
+                "DAnimeImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "DAnimeImg_Quest TEXT NOT NULL," +
+                "DAnimeImg_Img INTEGER NOT NULL," +
+                "DAnimeImg_Answ1 TEXT NOT NULL," +
+                "DAnimeImg_Answ2 TEXT NOT NULL," +
+                "DAnimeImg_Answ3 TEXT NOT NULL," +
+                "DAnimeImg_Answ4 TEXT NOT NULL," +
+                "DAnimeImg_CorrectAnsw TEXT NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_DIFICULTVIDEOGAMES_IMG + "(" +
+                "DVideogamesImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "DVideogamesImg_Quest TEXT NOT NULL," +
+                "DVideogamesImg_Img INTEGER NOT NULL," +
+                "DVideogamesImg_Answ1 TEXT NOT NULL," +
+                "DVideogamesImg_Answ2 TEXT NOT NULL," +
+                "DVideogamesImg_Answ3 TEXT NOT NULL," +
+                "DVideogamesImg_Answ4 TEXT NOT NULL," +
+                "DVideogamesImg_CorrectAnsw TEXT NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_DIFICULTCINE_IMG + "(" +
+                "DCineImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "DCineImg_Quest TEXT NOT NULL," +
+                "DCineImg_Img INTEGER NOT NULL," +
+                "DCineImg_Answ1 TEXT NOT NULL," +
+                "DCineImg_Answ2 TEXT NOT NULL," +
+                "DCineImg_Answ3 TEXT NOT NULL," +
+                "DCineImg_Answ4 TEXT NOT NULL," +
+                "DCineImg_CorrectAnsw TEXT NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_DIFICULTHISTORY_IMG + "(" +
+                "DHistoryImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "DHistoryImg_Quest TEXT NOT NULL," +
+                "DHistoryImg_Img INTEGER NOT NULL," +
+                "DHistoryImg_Answ1 TEXT NOT NULL," +
+                "DHistoryImg_Answ2 TEXT NOT NULL," +
+                "DHistoryImg_Answ3 TEXT NOT NULL," +
+                "DHistoryImg_Answ4 TEXT NOT NULL," +
+                "DHistoryImg_CorrectAnsw TEXT NOT NULL)");
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_EASYCINE_IMG + "(" +
+                "ECineImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "ECineImg_Quest TEXT NOT NULL," +
+                "ECineImg_Img INTEGER NOT NULL," +
+                "ECineImg_Answ1 TEXT NOT NULL," +
+                "ECineImg_Answ2 TEXT NOT NULL," +
+                "ECineImg_Answ3 TEXT NOT NULL," +
+                "ECineImg_Answ4 TEXT NOT NULL," +
+                "ECineImg_CorrectAnsw TEXT NOT NULL)");
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_EASYHISTORY_IMG + "(" +
+                "EHistoryImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "EHistoryImg_Quest TEXT NOT NULL," +
+                "EHistoryImg_Img INTEGER NOT NULL," +
+                "EHistoryImg_Answ1 TEXT NOT NULL," +
+                "EHistoryImg_Answ2 TEXT NOT NULL," +
+                "EHistoryImg_Answ3 TEXT NOT NULL," +
+                "EHistoryImg_Answ4 TEXT NOT NULL," +
+                "EHistoryImg_CorrectAnsw TEXT NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_EASYVIDEOGAMES_IMG + "(" +
+                "EVideogamesImg_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "EVideogamesImg_Quest TEXT NOT NULL," +
+                "EVideogamesImg_Img INTEGER NOT NULL," +
+                "EVideogamesImg_Answ1 TEXT NOT NULL," +
+                "EVideogamesImg_Answ2 TEXT NOT NULL," +
+                "EVideogamesImg_Answ3 TEXT NOT NULL," +
+                "EVideogamesImg_Answ4 TEXT NOT NULL," +
+                "EVideogamesImg_CorrectAnsw TEXT NOT NULL)");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYANIME);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTANIME);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYCINE);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTCINE);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTHISTORY);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYHISTORY);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_DIFICULTVIDEOGAMES);
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_EASYVIDEOGAMES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYANIME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTANIME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYCINE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTCINE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTHISTORY);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYHISTORY);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTVIDEOGAMES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYVIDEOGAMES);
+
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYVIDEOGAMES_IMG);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYVIDEOGAMES_IMG);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYVIDEOGAMES_IMG);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYVIDEOGAMES_IMG);
+
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTVIDEOGAMES_IMG);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTVIDEOGAMES_IMG);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTVIDEOGAMES_IMG);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFICULTVIDEOGAMES_IMG);
+
         onCreate(sqLiteDatabase);
     }
 

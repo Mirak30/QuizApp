@@ -2,16 +2,17 @@ package com.example.prueba_quiz;
 
 import java.io.Serializable;
 
-public class TextQuestions implements Serializable {
+public class ImageQuestions implements Serializable {
     private int id;
     private String question;
+    private int img;
     private String answer1;
     private String answer2;
     private String answer3;
     private String answer4;
     private String correctAnswer;
 
-    public TextQuestions(){
+    public ImageQuestions(){
 
     }
     public int getId() {
@@ -28,6 +29,14 @@ public class TextQuestions implements Serializable {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
     }
 
     public String getAnswer1() {
@@ -70,3 +79,4 @@ public class TextQuestions implements Serializable {
         this.correctAnswer = correctAnswer;
     }
 }
+
