@@ -4,99 +4,107 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
-import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class QuizQuestionImages extends AppCompatActivity {
 
     private ImageButton BExit;
+    private ImageView barra;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
     private ImageView question;
-    Chronometer chronometerQuestionImage;
     private int imagesEasy[]={R.drawable.reinaisabel};
     private int imagesHard[]={R.drawable.saneduardo};
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
-    private int correctAnswer;
-    private String[] allQuestions;
+    private int id_Questions5[] = {R.drawable.barra_5_1, R.drawable.barra_5_2, R.drawable.barra_5_3, R.drawable.barra_5_4, R.drawable.barra_5_5};
+    private int id_Questions10[] = {R.drawable.barra_10_1, R.drawable.barra_10_2, R.drawable.barra_10_3, R.drawable.barra_10_4, R.drawable.barra_10_5,
+            R.drawable.barra_10_6, R.drawable.barra_10_7, R.drawable.barra_10_8, R.drawable.barra_10_9, R.drawable.barra_10_10};
+    private int id_Questions15[] = {R.drawable.barra_15_1, R.drawable.barra_15_2, R.drawable.barra_15_3, R.drawable.barra_15_4, R.drawable.barra_15_5,
+            R.drawable.barra_15_6, R.drawable.barra_15_7, R.drawable.barra_15_8, R.drawable.barra_15_9, R.drawable.barra_15_10,
+            R.drawable.barra_15_11, R.drawable.barra_15_12, R.drawable.barra_15_13, R.drawable.barra_15_14, R.drawable.barra_15_15};
+    private String correctAnswer;
+    private ArrayList<ImageQuestions> imageQuestions;
     private boolean[] answerIsCorrect;
     private int currentQuestion;
     private TextView textQuestion;
     private int partialRes;
     private int partialResIncorrect;
+    private TextView textCorrect;
+    private TextView textIncorrect;
     boolean correct = false;
-    Intent i,opt;
+    Intent i,cat;
     String difficulty;
     boolean images;
-    long antChronometer;
-    long sigChronometer = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_question_images);
-        opt=getIntent();
-        difficulty=opt.getStringExtra("Difficulty");
-        images=opt.getBooleanExtra("images",true);
+        cat=getIntent();
+        //difficulty=opt.getStringExtra("Difficulty");
+        //images=cat.getBooleanExtra("images",true);
         i=new Intent(QuizQuestionImages.this, QuizQuestionSound.class);
         textQuestion = findViewById(R.id.textQuestion);
-        partialRes=opt.getIntExtra("result",0);
-        partialResIncorrect = opt.getIntExtra("resultIncorrect",0);
+        textCorrect = findViewById(R.id.textPointCorrects);
+        textIncorrect = findViewById(R.id.textPointsIncorrects);
+        partialRes=cat.getIntExtra("result",0);
+        partialResIncorrect = cat.getIntExtra("resultIncorrect",0);
         question=findViewById(R.id.imgQuest);
-        antChronometer = opt.getLongExtra("timeChronometerQuestionImage",0);
-        chronometerQuestionImage = findViewById(R.id.chronometerQuestionImage);
-        if(difficulty.equals("Easy")){
-            allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Easy);
-        }else if(difficulty.equals("Difficult")){
-            allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
-        }
+        barra = findViewById(R.id.imageNumberQuestions);
+        imageQuestions=(ArrayList<ImageQuestions>)cat.getSerializableExtra("imgQuest");
 
-        chronometerQuestionImage.setBase(SystemClock.elapsedRealtime()-antChronometer);
-        chronometerQuestionImage.start();
         currentQuestion = 0;
-        answerIsCorrect = new boolean[allQuestions.length];
+        //answerIsCorrect = new boolean[imageQuestions.size()];
 
         showQuestion();
-        configureButton(correctAnswer);
+        configureButton();
     }
 
     private void showQuestion() {
-        String q = allQuestions[currentQuestion];
-        if(difficulty.equals("Easy")){
-            question.setImageResource(imagesEasy[currentQuestion]);
+        textCorrect.setText(Integer.toString(partialRes));
+        textIncorrect.setText(Integer.toString(partialResIncorrect));
+        ImageQuestions q = imageQuestions.get(currentQuestion);
+        //String[] parts = q.split(";");
 
-        }else{
-            question.setImageResource(imagesHard[currentQuestion]);
-        }
+        textQuestion.setText(q.getQuestion());
+        question.setImageResource(q.getImg());
+        correctAnswer=q.getCorrectAnswer();
+        TextView tb = (TextView) findViewById(id_answers[0]);
+        tb.setText(q.getAnswer1());
 
-        String[] parts = q.split(";");
+        tb = (TextView) findViewById(id_answers[1]);
+        tb.setText(q.getAnswer2());
 
-        textQuestion.setText(parts[0]);
+        tb = (TextView) findViewById(id_answers[2]);
+        tb.setText(q.getAnswer3());
 
-        for(int i=0; i < id_answers.length; i++)
-        {
-            TextView tb = (TextView) findViewById(id_answers[i]);
-            String answer = parts[i+1];
-            if(answer.charAt(0) == '*')
-            {
-                correctAnswer = i;
-                answer = answer.substring(1);
-            }
-            tb.setText(answer);
+        tb = (TextView) findViewById(id_answers[3]);
+        tb.setText(q.getAnswer4());
+
+        if(cat.getIntExtra("nQuest",5)==5){
+            barra.setImageResource(id_Questions5[currentQuestion+cat.getIntExtra("currentQuest",0)+1]);
+
+        }else if(cat.getIntExtra("nQuest",5)==10) {
+            barra.setImageResource(id_Questions10[currentQuestion+cat.getIntExtra("currentQuest",0)+1]);
+
+        }else if(cat.getIntExtra("nQuest",5)==15){
+            barra.setImageResource(id_Questions15[currentQuestion+cat.getIntExtra("currentQuest",0)+1]);
+
         }
     }
 
-    public void configureButton(int cA)
+    public void configureButton()
     {
         BExit = findViewById(R.id.BExitQuiz);
         BExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(new Intent(QuizQuestionImages.this, Category.class));
+                System.exit(0);
             }
         });
 
@@ -104,8 +112,9 @@ public class QuizQuestionImages extends AppCompatActivity {
         BOp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 0;
-                doValidate(answer);
+                //int answer = 0;
+                TextView t=(TextView)findViewById(id_answers[0]);
+                doValidate((String) t.getText());
             }
         });
 
@@ -113,8 +122,9 @@ public class QuizQuestionImages extends AppCompatActivity {
         BOp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 1;
-                doValidate(answer);
+                //int answer = 1;
+                TextView t=(TextView)findViewById(id_answers[1]);
+                doValidate((String) t.getText());
             }
         });
 
@@ -122,8 +132,9 @@ public class QuizQuestionImages extends AppCompatActivity {
         BOp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 2;
-                doValidate(answer);
+                //int answer = 2;
+                TextView t=(TextView)findViewById(id_answers[2]);
+                doValidate((String) t.getText());
             }
         });
 
@@ -131,17 +142,18 @@ public class QuizQuestionImages extends AppCompatActivity {
         BOp4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 3;
-                doValidate(answer);
+                //int answer = 3;
+                TextView t=(TextView)findViewById(id_answers[3]);
+                doValidate((String) t.getText());
             }
         });
 
     }
 
-    public void doValidate(int answer)
+    public void doValidate(String answer)
     {
 
-        if(answer == correctAnswer)
+        if(answer.equals(correctAnswer))
         {
             Toast.makeText(this,R.string.correctAnswer,Toast.LENGTH_SHORT).show();
             //answerIsCorrect[currentQuestion] = true;
@@ -159,9 +171,6 @@ public class QuizQuestionImages extends AppCompatActivity {
 
         if(currentQuestion == 0)
         {
-            sigChronometer = SystemClock.elapsedRealtime() - chronometerQuestionImage.getBase();
-            i.putExtra("timeChronometerSound", sigChronometer);
-            chronometerQuestionImage.stop();
             finish();
             startActivity(i);
         }else

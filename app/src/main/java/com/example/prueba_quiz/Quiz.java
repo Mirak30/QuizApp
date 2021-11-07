@@ -64,7 +64,7 @@ public class Quiz extends AppCompatActivity {
         }*/
 
         currentQuestion = 0;
-        answerIsCorrect = new boolean[textQuestions.size()];
+        //answerIsCorrect = new boolean[textQuestions.size()];
         partialRes = 0;
         partialResIncorrect = 0;
 
@@ -73,6 +73,8 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void showQuestion() {
+        textCorrect.setText(Integer.toString(partialRes));
+        textIncorrect.setText(Integer.toString(partialResIncorrect));
         TextQuestions q = textQuestions.get(currentQuestion);
         //String[] parts = q.split(";");
 
@@ -191,8 +193,11 @@ public class Quiz extends AppCompatActivity {
             i.putExtra("result", partialRes);
         }
 
-        if(currentQuestion == textQuestions.size())
+        if(currentQuestion == textQuestions.size()-1)
         {
+            i.putExtra("currentQuest",currentQuestion);
+            i.putExtra("nQuest",cat.getIntExtra("nQuest",5));
+            i.putExtra("imgQuest",imageQuestions);
             finish();
             startActivity(i);
         }else
