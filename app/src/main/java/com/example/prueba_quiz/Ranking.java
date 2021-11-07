@@ -14,7 +14,7 @@ public class Ranking extends AppCompatActivity {
     String s1[], s2[];
     RecyclerView recyclerView;
     ImageButton goBack;
-
+    int play;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class Ranking extends AppCompatActivity {
         recyclerView = findViewById(R.id.RecycleViewRanking);
         s1 = getResources().getStringArray(R.array.nameRanking);
         s2 = getResources().getStringArray(R.array.resultRanking);
-
+        play = (int) Comunicador.getInt();
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -42,5 +42,23 @@ public class Ranking extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
+        }
+    }
 }

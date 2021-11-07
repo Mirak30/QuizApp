@@ -29,6 +29,7 @@ public class QuizQuestionSound extends AppCompatActivity {
     String difficulty;
     long antChronometer;
     long sigChronometer = 0;
+    int play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class QuizQuestionSound extends AppCompatActivity {
         }else if(difficulty.equals("Difficult")){
             allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
         }
-
+        play = (int) Comunicador.getInt();
         chronometerSound.setBase(SystemClock.elapsedRealtime()-antChronometer);
         chronometerSound.start();
         currentQuestion = 0;
@@ -180,6 +181,25 @@ public class QuizQuestionSound extends AppCompatActivity {
         {
             currentQuestion++;
             showQuestion();
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
         }
     }
 }

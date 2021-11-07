@@ -33,6 +33,7 @@ public class QuizImages extends AppCompatActivity {
     int partialRes;
     int partialResIncorrect;
     Intent i, intent;
+    int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class QuizImages extends AppCompatActivity {
         imageEasyQuestions=getResources().getStringArray(R.array.image_question_Easy);
         imageDiffQuestions=getResources().getStringArray(R.array.image_question_Hard);
         answerIsCorrect = new boolean[4];
+        play = (int) Comunicador.getInt();
         BOp1 = findViewById(R.id.ButtonOp1);
         BOp2 = findViewById(R.id.ButtonOp2);
         BOp3 = findViewById(R.id.ButtonOp3);
@@ -174,6 +176,25 @@ public class QuizImages extends AppCompatActivity {
             currentQuestion++;
             counter++;
             showQuestion();
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
         }
     }
 }

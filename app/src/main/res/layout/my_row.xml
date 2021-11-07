@@ -19,34 +19,35 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textNameRanking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/harringt"
-                android:text="Name"
-                android:textAlignment="textStart"
-                android:textColor="#111111"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.324"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/textResultRanking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/harringt"
-                android:text="Result: Corrects: 0 / Incorrects: 0"
+                android:text="Resultado: Correctas: 0 / Incorrectas: 0"
                 android:textAlignment="textStart"
                 android:textColor="#111111"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textNameRanking"
                 app:layout_constraintTop_toBottomOf="@+id/textNameRanking" />
+
+            <TextView
+                android:id="@+id/textNameRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/harringt"
+                android:text="Nombre"
+                android:textAlignment="textStart"
+                android:textColor="#111111"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.207"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

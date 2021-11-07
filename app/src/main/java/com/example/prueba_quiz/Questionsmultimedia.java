@@ -165,5 +165,20 @@ public class Questionsmultimedia extends AppCompatActivity {
             showQuestion();
         }
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //pausar();
+        Intent i = new Intent(this, AudioService.class);
+        i.putExtra("action", AudioService.PAUSE);
+        startService(i);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Intent i = new Intent(this, AudioService.class);
+        i.putExtra("action", AudioService.START);
+        startService(i);
+    }
 }

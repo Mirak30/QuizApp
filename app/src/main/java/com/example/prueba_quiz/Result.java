@@ -24,7 +24,7 @@ public class Result extends AppCompatActivity {
     int resultIncorrects;
     long chronometerResult;
     TextView textChronometerResult;
-
+    int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class Result extends AppCompatActivity {
         resultFinal.setText(sc);
         resultFinalIncorrect.setText(si);
         recyclerView = findViewById(R.id.RecycleViewRanking);
-
+        play = (int) Comunicador.getInt();
         s1 = getResources().getStringArray(R.array.nameRanking);
         s2 = getResources().getStringArray(R.array.resultRanking);
 
@@ -98,5 +98,24 @@ public class Result extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
+        }
     }
 }
