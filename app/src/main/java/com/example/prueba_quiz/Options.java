@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class Options extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class Options extends AppCompatActivity {
     EditText changeName;
     Intent in, i;
     ArrayAdapter<String> arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class Options extends AppCompatActivity {
         bsound = findViewById(R.id.BSoundOn);
         changeName = findViewById(R.id.editTextPersonName);
         bChangeName = findViewById(R.id.BChangeName);
-        name = getIntent().getStringExtra("Player");
+        name = Comunicador.getString();
         changeName.setText(name);
         play = (int) Comunicador.getInt();
 
@@ -77,8 +79,8 @@ public class Options extends AppCompatActivity {
         bChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                i.putExtra("NewPlayer",changeName.getText().toString());
-
+                name = String.valueOf(changeName.getText());
+                Comunicador.setString(name);
             }
         });
     }

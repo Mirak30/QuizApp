@@ -21,9 +21,8 @@ public class Menu extends AppCompatActivity{
     private VideoView videoBg;
     MediaPlayer mMediaPlayer;
     int nCurrentVideoPosition;
-    MediaPlayer ambientSound;
-    boolean shouldPause = false;
     int play;
+    String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +80,9 @@ public class Menu extends AppCompatActivity{
         BSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                nombre = String.valueOf(editName.getText());
+                Comunicador.setString(nombre);
+                finish();
                 startActivity(new Intent(Menu.this, Category.class));
             }
         });
