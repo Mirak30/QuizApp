@@ -34,7 +34,7 @@ public class Options extends AppCompatActivity {
         changeName.setText(name);
 
         i=new Intent(this, Result.class);
-        in=new Intent(this,Category.class);
+
         arrayAdapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,opt);
         nQuest.setAdapter(arrayAdapter);
 
@@ -62,6 +62,8 @@ public class Options extends AppCompatActivity {
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                in=new Intent(Options.this,Category.class);
+                in.putExtra("nQuest",Integer.parseInt(nQuest.getSelectedItem().toString()));
                 finish();
                 startActivity(in);
             }

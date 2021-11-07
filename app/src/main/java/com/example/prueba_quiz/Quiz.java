@@ -3,13 +3,14 @@ package com.example.prueba_quiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity {
 
@@ -23,8 +24,9 @@ public class Quiz extends AppCompatActivity {
     private int id_Questions15[] = {R.drawable.barra_15_1, R.drawable.barra_15_2, R.drawable.barra_15_3, R.drawable.barra_15_4, R.drawable.barra_15_5,
                                     R.drawable.barra_15_6, R.drawable.barra_15_7, R.drawable.barra_15_8, R.drawable.barra_15_9, R.drawable.barra_15_10,
                                     R.drawable.barra_15_11, R.drawable.barra_15_12, R.drawable.barra_15_13, R.drawable.barra_15_14, R.drawable.barra_15_15};
-    private int correctAnswer;
-    private String[] allQuestions;
+    private String correctAnswer;
+    private ArrayList<TextQuestions> textQuestions;
+    private ArrayList<ImageQuestions> imageQuestions;
     private boolean[] answerIsCorrect;
     private int currentQuestion;
     private TextView textQuestion;
@@ -33,51 +35,77 @@ public class Quiz extends AppCompatActivity {
     private int partialRes;
     private int partialResIncorrect;
     boolean correct = false;
-    Intent i,opt;
+    Intent i,cat;
     String difficulty;
     boolean images;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        opt=getIntent();
-        difficulty=opt.getStringExtra("Difficulty");
-        images=opt.getBooleanExtra("images",true);
+        cat=getIntent();
+        //difficulty=opt.getStringExtra("Difficulty");
+        images=cat.getBooleanExtra("images",true);
         if(images){
-            i=new Intent(Quiz.this, QuizImages.class);
+            i=new Intent(Quiz.this, QuizQuestionImages.class);
         }else{
             i=new Intent(Quiz.this, Result.class);
         }
-        i.putExtra("Difficulty",difficulty);
+        //i.putExtra("Difficulty",difficulty);
         textQuestion = findViewById(R.id.textQuestion);
         textCorrect = findViewById(R.id.textPointCorrects);
         textIncorrect = findViewById(R.id.textPointsIncorrects);
         barra = findViewById(R.id.ImageNumberQuestions);
-        if(difficulty.equals("Easy")){
+        textQuestions =(ArrayList<TextQuestions>)cat.getSerializableExtra("textQuest");
+        imageQuestions =(ArrayList<ImageQuestions>)cat.getSerializableExtra("imgQuest");
+        /*if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.easyQuestions);
         }else if(difficulty.equals("Difficult")){
             allQuestions = getResources().getStringArray(R.array.diffQuestions);
-        }
+        }*/
 
         currentQuestion = 0;
-        answerIsCorrect = new boolean[allQuestions.length];
+        answerIsCorrect = new boolean[textQuestions.size()];
         partialRes = 0;
         partialResIncorrect = 0;
 
         showQuestion();
-        configureButton(correctAnswer);
+        configureButton();
     }
 
     private void showQuestion() {
-        String q = allQuestions[currentQuestion];
-        String[] parts = q.split(";");
+        TextQuestions q = textQuestions.get(currentQuestion);
+        //String[] parts = q.split(";");
 
-        textQuestion.setText(parts[0]);
-        barra.setImageResource(id_Questions10[currentQuestion]);
-        textCorrect.setText(Integer.toString(partialRes));
-        textIncorrect.setText(Integer.toString(partialResIncorrect));
+        textQuestion.setText(q.getQuestion());
+        correctAnswer=q.getCorrectAnswer();
+        TextView tb = (TextView) findViewById(id_answers[0]);
+            tb.setText(q.getAnswer1());
 
-        for(int i=0; i < id_answers.length; i++)
+        tb = (TextView) findViewById(id_answers[1]);
+        tb.setText(q.getAnswer2());
+
+        tb = (TextView) findViewById(id_answers[2]);
+        tb.setText(q.getAnswer3());
+
+        tb = (TextView) findViewById(id_answers[3]);
+        tb.setText(q.getAnswer4());
+
+        if(cat.getIntExtra("nQuest",5)==5){
+            barra.setImageResource(id_Questions5[currentQuestion]);
+
+        }else if(cat.getIntExtra("nQuest",5)==10) {
+            barra.setImageResource(id_Questions10[currentQuestion]);
+
+        }else if(cat.getIntExtra("nQuest",5)==15){
+            barra.setImageResource(id_Questions15[currentQuestion]);
+
+        }
+        //textQuestion.setText(parts[0]);
+
+        /*textCorrect.setText(Integer.toString(partialRes));
+        textIncorrect.setText(Integer.toString(partialResIncorrect));*/
+
+        /*for(int i=0; i < id_answers.length; i++)
         {
             TextView tb = (TextView) findViewById(id_answers[i]);
             String answer = parts[i+1];
@@ -88,10 +116,10 @@ public class Quiz extends AppCompatActivity {
             }
 
             tb.setText(answer);
-        }
+        }*/
     }
 
-    public void configureButton(int cA)
+    public void configureButton()
     {
         BExit = findViewById(R.id.BExitQuiz);
         BExit.setOnClickListener(new View.OnClickListener() {
@@ -106,8 +134,9 @@ public class Quiz extends AppCompatActivity {
         BOp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 0;
-                doValidate(answer);
+                //int answer = 0;
+                TextView t=(TextView)findViewById(id_answers[0]);
+                doValidate((String) t.getText());
             }
         });
 
@@ -115,8 +144,9 @@ public class Quiz extends AppCompatActivity {
         BOp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 1;
-                doValidate(answer);
+                //int answer = 1;
+                TextView t=(TextView)findViewById(id_answers[1]);
+                doValidate((String) t.getText());
             }
         });
 
@@ -124,8 +154,9 @@ public class Quiz extends AppCompatActivity {
         BOp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 2;
-                doValidate(answer);
+                //int answer = 2;
+                TextView t=(TextView)findViewById(id_answers[2]);
+                doValidate((String) t.getText());
             }
         });
 
@@ -133,17 +164,18 @@ public class Quiz extends AppCompatActivity {
         BOp4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer = 3;
-                doValidate(answer);
+                //int answer = 3;
+                TextView t=(TextView)findViewById(id_answers[3]);
+                doValidate((String) t.getText());
             }
         });
 
     }
 
-    public void doValidate(int answer)
+    public void doValidate(String answer)
     {
 
-        if(answer == correctAnswer)
+        if(answer.equals(correctAnswer))
         {
             Toast.makeText(this,R.string.correctAnswer,Toast.LENGTH_SHORT).show();
             //answerIsCorrect[currentQuestion] = true;
@@ -159,7 +191,7 @@ public class Quiz extends AppCompatActivity {
             i.putExtra("result", partialRes);
         }
 
-        if(currentQuestion == 9)
+        if(currentQuestion == textQuestions.size())
         {
             finish();
             startActivity(i);

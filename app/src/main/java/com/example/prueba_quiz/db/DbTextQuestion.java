@@ -14,11 +14,15 @@ import java.util.ArrayList;
 public class DbTextQuestion extends DbHelper{
     Context context;
     int size = 0;
+    public DbTextQuestion(@Nullable Context context, int size) {
+        super(context);
+        this.size=size;
+        this.context = context;
+    }
     public DbTextQuestion(@Nullable Context context) {
         super(context);
         this.context = context;
     }
-
     public long insertEasyQuestionAnime(String question, String answer1,
                                         String answer2, String answer3, String answer4,
                                         String correctAnswer){
@@ -209,7 +213,7 @@ public class DbTextQuestion extends DbHelper{
         return result;
     }
 
-    public ArrayList<TextQuestions> showQuestions()
+    public ArrayList<TextQuestions> showQuestions(String category)
     {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -220,23 +224,32 @@ public class DbTextQuestion extends DbHelper{
 
         if(size == 10)
         {
-            cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_EASYANIME + " ORDER BY RANDOM() LIMIT 5" ,null);
+            cursorQuestions = db.rawQuery("SELECT * FROM " + category + " ORDER BY RANDOM() LIMIT 5" ,null);
 
         }else if(size == 15)
         {
-            cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_EASYANIME + " ORDER BY RANDOM() LIMIT 10" ,null);
+            cursorQuestions = db.rawQuery("SELECT * FROM " + category + " ORDER BY RANDOM() LIMIT 10" ,null);
 
         }
         else
         {
-            cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_EASYANIME + " ORDER BY RANDOM() LIMIT 2" ,null);
+            cursorQuestions = db.rawQuery("SELECT * FROM " + category + " ORDER BY RANDOM() LIMIT 2" ,null);
         }
 
 
         if(cursorQuestions.moveToFirst())
         {
          do{
+             questions=new TextQuestions();
+             questions.setId(cursorQuestions.getInt(0));
+             questions.setQuestion(cursorQuestions.getString(1));
+             questions.setAnswer1(cursorQuestions.getString(2));
+             questions.setAnswer2(cursorQuestions.getString(3));
+             questions.setAnswer3(cursorQuestions.getString(4));
+             questions.setAnswer4(cursorQuestions.getString(5));
+             questions.setCorrectAnswer(cursorQuestions.getString(6));
 
+             listQuestion.add(questions);
          }while(cursorQuestions.moveToNext());
         }
 
