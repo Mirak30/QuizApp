@@ -3,15 +3,11 @@ package com.example.prueba_quiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.prueba_quiz.db.DbHelper;
+import com.example.prueba_quiz.db.DbImageQuestion;
 import com.example.prueba_quiz.db.DbTextQuestion;
 
 import java.util.ArrayList;
@@ -28,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             DbTextQuestion db = new DbTextQuestion(this);
+
             db.insertEasyQuestionAnime("¿Cuál es el apellido de Edward en 'Fullmetal Alchemist'?", "Elmac",
                     "Elrond", "Elric", "Edmod", "Elric");
             db.insertEasyQuestionAnime("¿Cuál es el EVA que pilota Shinji en 'Neon Genesis Evangelion'?", "Unidad 02",
@@ -199,6 +196,95 @@ public class MainActivity extends AppCompatActivity {
                     "John", "Comandante Total", "Soldado Maestro", "Jefe Maestro");
             db.insertDifficultQuestionVideogames("¿En que año fue lanzado Super Mario 64?", "1995",
                     "1996", "1998", "1999", "1996");
+
+
+            DbImageQuestion dbIm = new DbImageQuestion(this);
+
+            dbIm.insertQuestionEVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Call of Duty","Dead Space","Halo","Destiny",
+                    "Halo",R.drawable.vidfacil1);
+
+            dbIm.insertQuestionEVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Borderlands","GTA","Bioshock","Half-Life",
+                    "Bioshock",R.drawable.vidfacil2);
+
+            dbIm.insertQuestionEVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Mass Effect","The Witcher","Cooking Mama","Final Fantasy",
+                    "Final Fantasy",R.drawable.vidfacil4);
+
+            dbIm.insertQuestionEVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","The Legend of Zelda","Final Fantasy","Dragon Age","Dragon Quest",
+                    "The Legend of Zelda",R.drawable.vidfacil3);
+
+
+            dbIm.insertQuestionDVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Hitman","Max Payne","Deus Ex","Metal Gear",
+                    "Deus Ex",R.drawable.viddif1);
+
+            dbIm.insertQuestionDVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Gears of War","Killzone","Wolfenstein","Battlefield",
+                    "Gears of War",R.drawable.viddif2);
+
+            dbIm.insertQuestionDVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Crysis","Deus Ex","The Last of Us","Max Payne",
+                    "Max Payne",R.drawable.viddif3);
+
+            dbIm.insertQuestionDVideogamesImg("¿A qué saga de videojuegos pertenece este personaje?","Call of Duty","Dead Space","Halo","Titanfall",
+                    "Dead Space",R.drawable.viddif4);
+
+
+
+            dbIm.insertQuestionEAnimeImg("¿A qué serie de anime pertenece este personaje?","Fairy Tail","One Piece","Another","Jojo's Bizarre Adventure",
+                    "One Piece",R.drawable.animefacil1);
+            dbIm.insertQuestionEAnimeImg("¿A qué serie de anime pertenece este personaje?","Full Metal Alchemist","One Punch","Soul Eater","Sankarea",
+                    "Full Metal Alchemist",R.drawable.animefacil2);
+            dbIm.insertQuestionEAnimeImg("¿A qué serie de anime pertenece este personaje?","Naruto","Ao no Exorcist","Sankarea","Dragon Ball",
+                    "Dragon Ball",R.drawable.animefacil3);
+            dbIm.insertQuestionEAnimeImg("¿A qué serie de anime pertenece este personaje?","Dragon Ball","Jojo's Bizarre Adventure","Deadman Wonderland","Akame ga kill",
+                    "Jojo's Bizarre Adventure",R.drawable.animefacil4);
+
+
+            dbIm.insertQuestionDAnimeImg("¿A qué serie de anime pertenece este personaje?","Elfen Lied","Rokka no Yushaa","Death Note","Naruto",
+                    "Rokka no Yushaa",R.drawable.animedif1);
+            dbIm.insertQuestionDAnimeImg("¿A qué serie de anime pertenece este personaje?","One Piece","Ansatsu Kyoushitsu","Tasogare Otome x Amnesia","Omamori Himari",
+                    "Tasogare Otome x Amnesia",R.drawable.animedif2);
+            dbIm.insertQuestionDAnimeImg("¿A qué serie de anime pertenece este personaje?","Elfen Lied","Helsing","Highschool of the Dead","One Piece",
+                    "Elfen Lied",R.drawable.animedif3);
+            dbIm.insertQuestionDAnimeImg("¿A qué serie de anime pertenece este personaje?","Tokyo Ghoul","Akame ga kill","Death Parade","Kill la Kill",
+                    "Kill la Kill",R.drawable.animedif4);
+
+
+            dbIm.insertQuestionEHistoryImg("¿Qué diosa griega es?","Afrodita","Hestia","Atenea","Deméter",
+                    "Atenea",R.drawable.histfacil1);
+            dbIm.insertQuestionEHistoryImg("¿Qué dios es?","Shiva","Lakshmi","Rama","Ganesha",
+                    "Ganesha",R.drawable.histfacil2);
+            dbIm.insertQuestionEHistoryImg("¿Qué dios es?","Anubis","Seth","Ra","Horus",
+                    "Anubis",R.drawable.histfacil3);
+            dbIm.insertQuestionEHistoryImg("¿Qué nombre tiene este cuadro?","El Grito","La Mona Lisa","Salvator Mundi","El Guernica",
+                    "La Mona Lisa",R.drawable.histfacil4);
+
+
+            dbIm.insertQuestionDHistoryImg("¿Quién lo pintó?","Rubens","El Greco","Rembrandt","Velázquez",
+                    "Rembrandt",R.drawable.histdif1);
+            dbIm.insertQuestionDHistoryImg("Nombra esta escultura","Olympia","El beso","El mundo de Cristina","Venus de Milo",
+                    "Venus de Milo",R.drawable.histdif2);
+            dbIm.insertQuestionDHistoryImg("¿Qué dispositivo es?","Máquina de coser","Telégrafo","Transistor","Grabador",
+                    "Rembrandt",R.drawable.histdif3);
+            dbIm.insertQuestionDHistoryImg("Nombra este cuadro","El hijo del hombre","Salvator Mundi","David","El pensador",
+                    "El hijo del hombre",R.drawable.histdif4);
+
+
+            dbIm.insertQuestionECineImg("¿De qué película es la escena?","El conjuro","Annabelle","La monja","No respires",
+                    "El conjuro",R.drawable.cinefacil1);
+            dbIm.insertQuestionECineImg("¿De qué saga es el personaje?","Regreso al futuro","Pretty woman","Harry Potter","El orfanato",
+                    "Harry Potter",R.drawable.cinefacil2);
+            dbIm.insertQuestionECineImg("¿De qué película es este personaje?","Saw","IT","El sexto sentido","La llorona",
+                    "IT",R.drawable.cinefacil3);
+            dbIm.insertQuestionECineImg("¿De qué película es este personaje?","Rompe Ralph","En busca de la felicidad","Deadpool","Chappie",
+                    "Chappie",R.drawable.cinefacil4);
+
+
+            dbIm.insertQuestionDCineImg("¿De qué película es la escena?","El gran Lebowski","Saw II","El resplandor","El padrino",
+                    "El padrino",R.drawable.cinedif1);
+            dbIm.insertQuestionDCineImg("¿Quién es?","Johnny the Boy","Jim Goose","Mad Max","Crawford Montazano",
+                    "Mad Max",R.drawable.cinedif2);
+            dbIm.insertQuestionDCineImg("¿De qué película es la escena?","E.T.","Gremlins","Los Goonies","El resplandor",
+                    "E.T.",R.drawable.cinedif3);
+            dbIm.insertQuestionDCineImg("¿De qué película es la escena?","La chica del tren","Lost in Translation","Ghost in the Shell","El becario",
+                    "Lost in Translation",R.drawable.cinedif4);
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
