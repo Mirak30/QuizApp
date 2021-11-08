@@ -9,16 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class Options extends AppCompatActivity {
 
     Spinner nQuest;
     String opt[]={"5","10","15"}, name;
     ImageButton goBack,bChangeName,bsound;
-    boolean sound = true;
+    int play;
     EditText changeName;
     Intent in, i;
     ArrayAdapter<String> arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +31,9 @@ public class Options extends AppCompatActivity {
         bsound = findViewById(R.id.BSoundOn);
         changeName = findViewById(R.id.editTextPersonName);
         bChangeName = findViewById(R.id.BChangeName);
-
-        name = getIntent().getStringExtra("Player");
+        name = Comunicador.getString();
         changeName.setText(name);
+        play = (int) Comunicador.getInt();
 
         i=new Intent(this, Result.class);
 
@@ -45,17 +47,22 @@ public class Options extends AppCompatActivity {
         bsound.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
-                  if(sound)
+                  Intent i = new Intent(Options.this, AudioService.class);
+                  if(play == 1)
                   {
-                      bsound.setImageResource(R.drawable.sonido_off);
-                      sound = false;
+                      bsound.setImageResource(R.drawable.sonido_on);
+                      i.putExtra("action", AudioService.START);
+                      startService(i);
+                      play = 0;
                   }
                   else
                   {
-                      bsound.setImageResource(R.drawable.sonido_on);
-                      sound = true;
+                      bsound.setImageResource(R.drawable.sonido_off);
+                      i.putExtra("action", AudioService.STOP);
+                      startService(i);
+                      play = 1;
                   }
-
+                    Comunicador.setInt(play);
               }
         });
 
@@ -72,11 +79,29 @@ public class Options extends AppCompatActivity {
         bChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                i.putExtra("NewPlayer",changeName.getText().toString());
-
+                name = String.valueOf(changeName.getText());
+                Comunicador.setString(name);
             }
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
+        }
+    }
 }

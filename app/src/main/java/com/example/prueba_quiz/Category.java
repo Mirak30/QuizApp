@@ -25,9 +25,9 @@ public class Category extends AppCompatActivity {
     int numQuest=5;
     Intent i,in,options;
     ArrayAdapter<String> arrayAdapter;
-
     DbTextQuestion dbTextQuestion;
     DbImageQuestion dbImageQuestion;
+    int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class Category extends AppCompatActivity {
         bAnime=findViewById(R.id.BCategoryAnime);
         bCinema=findViewById(R.id.BCategoryCinema);
         bHistory=findViewById(R.id.BCategoryHistory);
-
+        play = (int) Comunicador.getInt();
         i=new Intent(this,Quiz.class);
         in=new Intent(this,Menu.class);
 
@@ -73,7 +73,7 @@ public class Category extends AppCompatActivity {
         startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(imgCheck.isChecked()){
+                /*if(imgCheck.isChecked()){
                     i.putExtra("images",true);
                 }else {
                     i.putExtra("images", false);
@@ -85,7 +85,8 @@ public class Category extends AppCompatActivity {
                     i.putExtra("Difficulty","Difficult");
                 }
                 finish();
-                startActivity(i);
+                startActivity(i);*/
+                startActivity(new Intent(Category.this, Result.class));
             }
         });
 
@@ -230,5 +231,23 @@ public class Category extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
+        }
+    }
 }

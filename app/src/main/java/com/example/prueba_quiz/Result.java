@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,10 +19,12 @@ public class Result extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton BExitFinal;
     ImageButton BReset;
-    String s1[], s2[];
+    String s1[], s2[], name;
     int result;
     int resultIncorrects;
-
+    long chronometerResult;
+    TextView textChronometerResult;
+    int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +39,25 @@ public class Result extends AppCompatActivity {
         String si=Integer.toString(resultIncorrects);
         resultFinal.setText(sc);
         resultFinalIncorrect.setText(si);
-
         recyclerView = findViewById(R.id.RecycleViewRanking);
-
+        name = Comunicador.getString();
+        nameResult = findViewById(R.id.textNameResult);
+        nameResult.setText(name);
+        play = (int) Comunicador.getInt();
         s1 = getResources().getStringArray(R.array.nameRanking);
         s2 = getResources().getStringArray(R.array.resultRanking);
 
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        chronometerResult = SystemClock.elapsedRealtime() - getIntent().getLongExtra("timeChronometerResult",0);
+        textChronometerResult = findViewById(R.id.textChronometerResult);
+        textChronometerResult.setText(Long.toString(chronometerResult));
 
         configureButton();
     }
+
+
 
     public void showRatingDialog(){
         String[] options={"Sí","No"};
@@ -90,5 +101,24 @@ public class Result extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
+        }
     }
 }

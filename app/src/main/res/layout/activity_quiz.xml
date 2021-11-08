@@ -8,6 +8,23 @@
     android:noHistory="true"
     tools:context=".Quiz">
 
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/harringt"
+        android:textAlignment="center"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/ImageNumberQuestions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"></Chronometer>
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="334dp"
@@ -192,7 +209,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/harringt"
-        android:text="Corrects:"
+        android:text="Correctas:"
         android:textColor="#111111"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -224,7 +241,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/harringt"
-        android:text="Incorrects:"
+        android:text="Incorrectas:"
         android:textColor="#111111"
         android:textSize="20sp"
         android:textStyle="bold"

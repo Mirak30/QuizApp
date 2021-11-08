@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Prueba_Quiz">
+        <service
+            android:name=".AudioService"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name" />
         <activity
             android:name=".QuizQuestionSound"
             android:exported="true" />

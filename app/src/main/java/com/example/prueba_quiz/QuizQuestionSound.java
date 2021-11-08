@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 public class QuizQuestionSound extends AppCompatActivity {
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4, BsoundPlay;
+    Chronometer chronometerSound;
     private int correctAnswer;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private String[] allQuestions;
@@ -24,6 +27,9 @@ public class QuizQuestionSound extends AppCompatActivity {
     boolean correct = false;
     Intent i,opt;
     String difficulty;
+    long antChronometer;
+    long sigChronometer = 0;
+    int play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +42,16 @@ public class QuizQuestionSound extends AppCompatActivity {
         textQuestion = findViewById(R.id.textQuestion);
         partialRes=opt.getIntExtra("result",0);
         partialResIncorrect = opt.getIntExtra("resultIncorrect",0);
+        antChronometer = opt.getLongExtra("timeChronometerSound",0);
         BsoundPlay=findViewById(R.id.BPlaySoundQuiz);
         if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Easy);
         }else if(difficulty.equals("Difficult")){
             allQuestions = getResources().getStringArray(R.array.image_question_text_resp_Hard);
         }
-
+        play = (int) Comunicador.getInt();
+        chronometerSound.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerSound.start();
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
 
@@ -100,7 +109,7 @@ public class QuizQuestionSound extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                System.exit(0);
+                startActivity(new Intent(QuizQuestionSound.this, Category.class));
             }
         });
 
@@ -161,14 +170,36 @@ public class QuizQuestionSound extends AppCompatActivity {
             i.putExtra("resultIncorrect", partialResIncorrect);
         }
 
-        if(currentQuestion == 0)
+        if(currentQuestion == 1)
         {
+            sigChronometer = SystemClock.elapsedRealtime() - chronometerSound.getBase();
+            i.putExtra("timeChronometerMultimedia", sigChronometer);
+            chronometerSound.stop();
             finish();
             startActivity(i);
         }else
         {
             currentQuestion++;
             showQuestion();
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
         }
     }
 }

@@ -40,6 +40,7 @@ public class QuizQuestionImages extends AppCompatActivity {
     Intent i,cat;
     String difficulty;
     boolean images;
+    int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class QuizQuestionImages extends AppCompatActivity {
         question=findViewById(R.id.imgQuest);
         barra = findViewById(R.id.imageNumberQuestions);
         imageQuestions=(ArrayList<ImageQuestions>)cat.getSerializableExtra("imgQuest");
-
+        play = (int) Comunicador.getInt();
         currentQuestion = 0;
         //answerIsCorrect = new boolean[imageQuestions.size()];
 
@@ -177,6 +178,25 @@ public class QuizQuestionImages extends AppCompatActivity {
         {
             currentQuestion++;
             showQuestion();
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
         }
     }
 }

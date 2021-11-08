@@ -21,19 +21,19 @@ public class Menu extends AppCompatActivity{
     private VideoView videoBg;
     MediaPlayer mMediaPlayer;
     int nCurrentVideoPosition;
-
+    int play;
+    String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        boolean soundPlay = false;
         i=new Intent(this, Options.class);
         editName = findViewById(R.id.editTextPersonName);
-
         videoBg = (VideoView) findViewById(R.id.videoView);
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fondo_v4);
-
+        play = (int) Comunicador.getInt();
         videoBg.setVideoURI(uri);
         videoBg.start();
 
@@ -48,8 +48,6 @@ public class Menu extends AppCompatActivity{
                 }
             }
         });
-
-
 
         BExit = findViewById(R.id.ButtonExit);
         BExit.setOnClickListener(new View.OnClickListener() {
@@ -82,10 +80,31 @@ public class Menu extends AppCompatActivity{
         BSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                nombre = String.valueOf(editName.getText());
+                Comunicador.setString(nombre);
                 finish();
                 startActivity(new Intent(Menu.this, Category.class));
             }
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.PAUSE);
+            startService(i);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(play == 0) {
+            Intent i = new Intent(this, AudioService.class);
+            i.putExtra("action", AudioService.START);
+            startService(i);
+        }
+    }
 }

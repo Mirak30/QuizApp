@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,10 +26,12 @@ public class Questionsmultimedia extends AppCompatActivity {
     private TextView textQuestion;
     private int partialRes;
     private int partialResIncorrect;
-
+    Chronometer chronometerMulti;
     boolean correct = false;
     Intent i,opt;
     String difficulty;
+    long antChronometer;
+    long chronometerResult = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +44,16 @@ public class Questionsmultimedia extends AppCompatActivity {
         textQuestion = findViewById(R.id.textQuestion);
         partialRes=opt.getIntExtra("result",0);
         partialResIncorrect = opt.getIntExtra("resultIncorrect",0);
-
+        antChronometer = opt.getLongExtra("timeChronometerMultimedia",0);
         currentQuestion = 0;
         answerIsCorrect = new boolean[allQuestions.length];
         question=findViewById(R.id.videoQuestions);
+
+        chronometerMulti.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerMulti.start();
         showQuestion();
         configureButton(correctAnswer);
+
     }
 
     private void showQuestion() {
@@ -80,8 +88,9 @@ public class Questionsmultimedia extends AppCompatActivity {
         BExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chronometerMulti.stop();
                 finish();
-                System.exit(0);
+                startActivity(new Intent(Questionsmultimedia.this, Category.class));
             }
         });
 
@@ -142,8 +151,12 @@ public class Questionsmultimedia extends AppCompatActivity {
             i.putExtra("resultIncorrect", partialResIncorrect);
         }
 
-        if(currentQuestion == 0)
+        if(currentQuestion == 1)
         {
+
+            chronometerResult = SystemClock.elapsedRealtime() - chronometerMulti.getBase();
+            i.putExtra("timeChronometerResult", chronometerResult);
+            chronometerMulti.stop();
             finish();
             startActivity(i);
         }else
@@ -152,5 +165,20 @@ public class Questionsmultimedia extends AppCompatActivity {
             showQuestion();
         }
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //pausar();
+        Intent i = new Intent(this, AudioService.class);
+        i.putExtra("action", AudioService.PAUSE);
+        startService(i);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Intent i = new Intent(this, AudioService.class);
+        i.putExtra("action", AudioService.START);
+        startService(i);
+    }
 }
