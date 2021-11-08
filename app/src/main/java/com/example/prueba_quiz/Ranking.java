@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Ranking extends AppCompatActivity {
     String s1[], s2[];
+
     RecyclerView recyclerView;
     ImageButton goBack;
     int play;
@@ -27,6 +29,9 @@ public class Ranking extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, s1, s2);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
         configureButton();
     }
 

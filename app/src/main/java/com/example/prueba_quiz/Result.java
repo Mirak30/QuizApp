@@ -19,7 +19,7 @@ public class Result extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton BExitFinal;
     ImageButton BReset;
-    String s1[], s2[];
+    String s1[], s2[], name;
     int result;
     int resultIncorrects;
     long chronometerResult;
@@ -40,6 +40,9 @@ public class Result extends AppCompatActivity {
         resultFinal.setText(sc);
         resultFinalIncorrect.setText(si);
         recyclerView = findViewById(R.id.RecycleViewRanking);
+        name = Comunicador.getString();
+        nameResult = findViewById(R.id.textNameResult);
+        nameResult.setText(name);
         play = (int) Comunicador.getInt();
         s1 = getResources().getStringArray(R.array.nameRanking);
         s2 = getResources().getStringArray(R.array.resultRanking);

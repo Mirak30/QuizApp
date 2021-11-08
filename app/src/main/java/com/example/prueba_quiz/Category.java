@@ -73,7 +73,7 @@ public class Category extends AppCompatActivity {
         startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(imgCheck.isChecked()){
+                /*if(imgCheck.isChecked()){
                     i.putExtra("images",true);
                 }else {
                     i.putExtra("images", false);
@@ -85,7 +85,8 @@ public class Category extends AppCompatActivity {
                     i.putExtra("Difficulty","Difficult");
                 }
                 finish();
-                startActivity(i);
+                startActivity(i);*/
+                startActivity(new Intent(Category.this, Result.class));
             }
         });
 
