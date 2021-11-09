@@ -63,7 +63,7 @@ public class QuizQuestionImages extends AppCompatActivity {
         partialRes=cat.getIntExtra("result",0);
         partialResIncorrect = cat.getIntExtra("resultIncorrect",0);
         question=findViewById(R.id.imgQuest);
-        antChronometer = cat.getLongExtra("timeChronometerMultimedia",0);
+        antChronometer = cat.getLongExtra("timeChronometerQuizImage",0);
         barra = findViewById(R.id.imageNumberQuestions);
         imageQuestions=(ArrayList<ImageQuestions>)cat.getSerializableExtra("imgQuest");
         soundQuestions=(ArrayList<SoundQuestions>)cat.getSerializableExtra("soundQuest");

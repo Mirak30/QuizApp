@@ -43,7 +43,7 @@ public class QuizImages extends AppCompatActivity {
         partialRes=intent.getIntExtra("result",0);
         partialResIncorrect=intent.getIntExtra("resultIncorrect",0);
         difficulty=intent.getStringExtra("Difficulty");
-        antChronometer = intent.getLongExtra("timeChronometerQuizImage",0);
+        //antChronometer = intent.getLongExtra("timeChronometerQuizImage",0);
         i.putExtra("Difficulty",difficulty);
         currentQuestion= 0;
         textQuestion = findViewById(R.id.textQuestion);
@@ -167,7 +167,7 @@ public class QuizImages extends AppCompatActivity {
         if(currentQuestion == 1)
         {
             sigChronometer = SystemClock.elapsedRealtime() - chronometerImage.getBase();
-            i.putExtra("timeChronometerQuestionImage", sigChronometer);
+            //i.putExtra("timeChronometerQuestionImage", sigChronometer);
             chronometerImage.stop();
             finish();
             startActivity(i);

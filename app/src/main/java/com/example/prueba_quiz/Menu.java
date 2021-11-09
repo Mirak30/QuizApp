@@ -68,6 +68,9 @@ public class Menu extends AppCompatActivity{
         BStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                nombre = "Anónimo";
+                dbOpt.insertPreferences(dbOpt.showNQuest(),dbOpt.showDiff(),nombre,dbOpt.showAudio());
+                Comunicador.setString(nombre);
                 finish();
                 startActivity(new Intent(Menu.this, Category.class));
             }

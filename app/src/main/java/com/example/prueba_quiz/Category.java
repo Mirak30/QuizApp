@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class Category extends AppCompatActivity {
 
-    ImageButton BOptions, startQuiz, goBack,bCinema, bHistory,bVideogames, bAnime;
+    ImageButton BOptions, goBack,bCinema, bHistory,bVideogames, bAnime;
     String opt[]={"Easy","Difficult"};
     int numQuest;
     Intent i,in,options;
@@ -46,7 +46,6 @@ public class Category extends AppCompatActivity {
         }
 
         goBack=findViewById(R.id.BGoBackOpt);
-        startQuiz=findViewById(R.id.ButtomStartQuiz);
         bVideogames=findViewById(R.id.BCategoryVideogames);
         bAnime=findViewById(R.id.BCategoryAnime);
         bCinema=findViewById(R.id.BCategoryCinema);
@@ -77,27 +76,6 @@ public class Category extends AppCompatActivity {
                 startActivity(in);
             }
         });
-
-        startQuiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*if(imgCheck.isChecked()){
-                    i.putExtra("images",true);
-                }else {
-                    i.putExtra("images", false);
-                }
-                if (nQuest.getSelectedItem().toString()=="Easy"||nQuest.getSelectedItem()==null){
-                    i.putExtra("Difficulty","Easy");
-
-                }else{
-                    i.putExtra("Difficulty","Difficult");
-                }
-                finish();
-                startActivity(i);*/
-                startActivity(new Intent(Category.this, Result.class));
-            }
-        });
-
 
         bHistory.setOnClickListener(new View.OnClickListener() {
             @Override

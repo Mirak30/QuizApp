@@ -33,7 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.myText1.setText(players.get(position).getName());
-        holder.myText2.setText("Resultado: Correctas: "+players.get(position).getCorrect()+ "/ Incorrectas: "+ players.get(position).getIncorrect());
+        holder.myText2.setText("Correctas: "+players.get(position).getCorrect()+ "/ Incorrectas: "+ players.get(position).getIncorrect());
         holder.myText3.setText(Integer.toString(players.get(position).getSeconds()));
     }
 
