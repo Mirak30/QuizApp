@@ -3,6 +3,7 @@ package com.example.prueba_quiz.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
@@ -40,6 +41,7 @@ public class DbRanking extends DbHelper{
             contentValues.put("Player_INCORRECT", incorrect);
             contentValues.put("Player_TIME", seconds);
 
+
             result = db.insert(TABLE_RANKING, null, contentValues);
         }catch (Exception ex)
         {
@@ -48,6 +50,130 @@ public class DbRanking extends DbHelper{
         return result;
     }
 
+    public long insertPreferences(int nQuest , int diff,
+                             String name, int audio){
+        long result = 0;
+        try {
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Option_NQUEST", nQuest);
+            contentValues.put("Option_DIFF", diff);
+            contentValues.put("Option_NAME", name);
+            contentValues.put("Option_AUDIO", audio);
+            long count = DatabaseUtils.queryNumEntries(db, TABLE_OPTIONS);
+
+            if (count==1){
+
+                result = db.update(TABLE_OPTIONS, contentValues, "Option_ID=1",null);
+            }else{
+
+                result = db.insert(TABLE_OPTIONS, null, contentValues);
+            }
+db.close();
+        }catch (Exception ex)
+        {
+            ex.toString();
+        }
+        return result;
+    }
+
+    public int showNQuest()
+    {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int nQuest=0;
+
+        Cursor cursorQuestions = null;
+
+
+        cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_OPTIONS ,null);
+
+
+        if(cursorQuestions.moveToFirst())
+        {
+            nQuest=cursorQuestions.getInt(1);
+        }
+
+        cursorQuestions.close();
+
+        return nQuest;
+    }
+
+    public int showDiff()
+    {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int diff=0;
+
+        Cursor cursorQuestions = null;
+
+
+        cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_OPTIONS ,null);
+
+
+        if(cursorQuestions.moveToFirst())
+        {
+            diff=cursorQuestions.getInt(2);
+        }
+
+        cursorQuestions.close();
+
+        return diff;
+    }
+
+    public String showName()
+    {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String name="Anónimo";
+
+        Cursor cursorQuestions = null;
+
+        long count = DatabaseUtils.queryNumEntries(db, TABLE_OPTIONS);
+        if(count==1){
+            cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_OPTIONS,null);
+
+
+            if(cursorQuestions.moveToFirst())
+            {
+                name=cursorQuestions.getString(3);
+            }
+
+            cursorQuestions.close();
+
+        }
+
+
+        return name;
+    }
+
+    public int showAudio()
+    {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int audio=0;
+
+        Cursor cursorQuestions = null;
+
+
+        cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_OPTIONS ,null);
+
+
+        if(cursorQuestions.moveToFirst())
+        {
+            audio=cursorQuestions.getInt(4);
+        }
+
+        cursorQuestions.close();
+
+        return audio;
+    }
 
 
     public ArrayList<Player> showPlayers()

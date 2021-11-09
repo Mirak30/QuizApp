@@ -55,6 +55,7 @@ public class Quiz extends AppCompatActivity {
             i=new Intent(Quiz.this, QuizQuestionImages.class);
 
         //i.putExtra("Difficulty",difficulty);
+
         textQuestion = findViewById(R.id.textQuestion);
         textCorrect = findViewById(R.id.textPointCorrects);
         textIncorrect = findViewById(R.id.textPointsIncorrects);
