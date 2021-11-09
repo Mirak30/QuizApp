@@ -201,6 +201,7 @@ public class Questionsmultimedia extends AppCompatActivity {
 
         if(currentQuestion == videoQuestions.size()-1)
         {
+            sigChronometer = SystemClock.elapsedRealtime() - chronometerSound.getBase();
             i.putExtra("timeChronometerResult",sigChronometer);
 
             finish();

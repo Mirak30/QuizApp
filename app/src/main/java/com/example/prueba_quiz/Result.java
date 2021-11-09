@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
@@ -51,9 +52,9 @@ public class Result extends AppCompatActivity {
         nameResult.setText(name);
         play = (int) Comunicador.getInt();
 
-        chronometerResult = SystemClock.elapsedRealtime() - getIntent().getLongExtra("timeChronometerResult",0);
+        chronometerResult = getIntent().getLongExtra("timeChronometerResult",0)/1000;
         textChronometerResult = findViewById(R.id.textChronometerResult);
-        textChronometerResult.setText(Long.toString(chronometerResult));
+        textChronometerResult.setText(Long.toString(chronometerResult)+" s");
 
         dbRanking.insertPlayer(name,result,resultIncorrects,chronometerResult);
         players = dbRanking.showPlayers();

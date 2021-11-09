@@ -207,7 +207,7 @@
         android:fontFamily="@font/harngt"
         android:text="Cronometro"
         android:textColor="#111111"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
