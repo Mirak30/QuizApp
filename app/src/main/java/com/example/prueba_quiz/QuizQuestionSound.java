@@ -221,6 +221,9 @@ public class QuizQuestionSound extends AppCompatActivity {
             i.putExtra("timeChronometerMultimedia", sigChronometer);
             i.putExtra("ccGlobal",currentQuestionGlobal+1);
             chronometerSound.stop();
+            sound.stop();
+
+
             finish();
             startActivity(i);
         }else
