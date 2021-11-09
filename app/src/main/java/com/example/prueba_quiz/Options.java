@@ -45,10 +45,12 @@ public class Options extends AppCompatActivity {
         }
         i=new Intent(this, Result.class);
 
-        arrayAdapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,opt);
+        arrayAdapter=new ArrayAdapter<>(this,R.layout.spinner_item,opt);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         nQuest.setAdapter(arrayAdapter);
 
-        arrayAdapterDif=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,optDif);
+        arrayAdapterDif=new ArrayAdapter<>(this,R.layout.spinner_item,optDif);
+        arrayAdapterDif.setDropDownViewResource(R.layout.spinner_dropdown_item);
         dif.setAdapter(arrayAdapterDif);
         name=dbOpt.showName();
         play=dbOpt.showAudio();
