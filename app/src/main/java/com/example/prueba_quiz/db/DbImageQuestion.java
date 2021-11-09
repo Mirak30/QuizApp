@@ -203,6 +203,7 @@ public class DbImageQuestion extends DbHelper {
             contentValues.put("DHistoryImg_Answ4", answer4);
             contentValues.put("DHistoryImg_CorrectAnsw", correctAnswer);
 
+            //db.execSQL("INSERT OR REPLACE INTO " + TABLE_DIFICULTHISTORY_IMG+ " VALUES (question,image,answer1,answer2,answer3,answer4,correctAnswer)");
             result = db.insert(TABLE_DIFICULTHISTORY_IMG, null, contentValues);
         }catch (Exception ex)
         {
@@ -250,16 +251,16 @@ public class DbImageQuestion extends DbHelper {
 
         if(size == 10)
         {
-            cursorQuestions = db.rawQuery("SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 5" ,null);
+            cursorQuestions = db.rawQuery("SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 3" ,null);
 
         }else if(size == 15)
         {
-            cursorQuestions = db.rawQuery("SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 10" ,null);
+            cursorQuestions = db.rawQuery("SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 3" ,null);
 
         }
         else
         {
-            cursorQuestions = db.rawQuery("SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 2" ,null);
+            cursorQuestions = db.rawQuery("SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 1" ,null);
         }
 
 

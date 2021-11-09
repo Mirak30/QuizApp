@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ public class Quiz extends AppCompatActivity {
 
     private ImageButton BExit;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
+    Chronometer chronometerSound;
     private ImageView barra;
     private int id_answers[] = {R.id.textOp1, R.id.textOp2, R.id.textOp3, R.id.textOp4};
     private int id_Questions5[] = {R.drawable.barra_5_1, R.drawable.barra_5_2, R.drawable.barra_5_3, R.drawable.barra_5_4, R.drawable.barra_5_5};
@@ -27,6 +30,8 @@ public class Quiz extends AppCompatActivity {
     private String correctAnswer;
     private ArrayList<TextQuestions> textQuestions;
     private ArrayList<ImageQuestions> imageQuestions;
+    private ArrayList<SoundQuestions> soundQuestions;
+    private ArrayList<VideoQuestions> videoQuestions;
     private boolean[] answerIsCorrect;
     private int currentQuestion;
     private TextView textQuestion;
@@ -38,6 +43,7 @@ public class Quiz extends AppCompatActivity {
     Intent i,cat;
     String difficulty;
     boolean images;
+    long sigChronometer = 0;
     int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +51,9 @@ public class Quiz extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         cat=getIntent();
         //difficulty=opt.getStringExtra("Difficulty");
-        images=cat.getBooleanExtra("images",true);
-        if(images){
+
             i=new Intent(Quiz.this, QuizQuestionImages.class);
-        }else{
-            i=new Intent(Quiz.this, Result.class);
-        }
+
         //i.putExtra("Difficulty",difficulty);
         textQuestion = findViewById(R.id.textQuestion);
         textCorrect = findViewById(R.id.textPointCorrects);
@@ -59,11 +62,16 @@ public class Quiz extends AppCompatActivity {
         play = (int) Comunicador.getInt();
         textQuestions =(ArrayList<TextQuestions>)cat.getSerializableExtra("textQuest");
         imageQuestions =(ArrayList<ImageQuestions>)cat.getSerializableExtra("imgQuest");
+        soundQuestions =(ArrayList<SoundQuestions>)cat.getSerializableExtra("soundQuest");
+        videoQuestions =(ArrayList<VideoQuestions>)cat.getSerializableExtra("videoQuest");
         /*if(difficulty.equals("Easy")){
             allQuestions = getResources().getStringArray(R.array.easyQuestions);
         }else if(difficulty.equals("Difficult")){
             allQuestions = getResources().getStringArray(R.array.diffQuestions);
         }*/
+        chronometerSound=findViewById(R.id.chronometer);
+        chronometerSound.setBase(SystemClock.elapsedRealtime());
+        chronometerSound.start();
 
         currentQuestion = 0;
         //answerIsCorrect = new boolean[textQuestions.size()];
@@ -200,6 +208,12 @@ public class Quiz extends AppCompatActivity {
             i.putExtra("currentQuest",currentQuestion);
             i.putExtra("nQuest",cat.getIntExtra("nQuest",5));
             i.putExtra("imgQuest",imageQuestions);
+            i.putExtra("soundQuest",soundQuestions);
+            i.putExtra("videoQuest",videoQuestions);
+            i.putExtra("ccGlobal",currentQuestion);
+            sigChronometer = SystemClock.elapsedRealtime() - chronometerSound.getBase();
+            i.putExtra("timeChronometerMultimedia", sigChronometer);
+            chronometerSound.stop();
             finish();
             startActivity(i);
         }else
