@@ -37,10 +37,10 @@
         android:id="@+id/textCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/harringt"
+        android:fontFamily="@font/harngton"
         android:text="Categorías"
         android:textColor="#222222"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageCategory"
         app:layout_constraintEnd_toEndOf="@+id/imageCategory"
@@ -63,33 +63,6 @@
         app:srcCompat="@drawable/boton_ajustes"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/ButtomStartQuiz"
-        android:layout_width="225dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/boton_tipo1"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BCategoryVideogames"
-        app:srcCompat="@drawable/boton_tipo1"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/harringt"
-        android:text="Jugar"
-        android:textColor="#222222"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/ButtomStartQuiz"
-        app:layout_constraintEnd_toEndOf="@+id/ButtomStartQuiz"
-        app:layout_constraintStart_toStartOf="@+id/ButtomStartQuiz"
-        app:layout_constraintTop_toTopOf="@+id/ButtomStartQuiz" />
 
     <ImageButton
         android:id="@+id/BCategoryHistory"
