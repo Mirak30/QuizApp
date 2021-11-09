@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "questions.db";
     public static final String TABLE_EASYANIME = "t_EAnime";
     public static final String TABLE_DIFICULTANIME = "t_DAnime";
@@ -53,6 +53,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_DIFICULTHISTORY_V = "t_DHistoryV";
     public static final String TABLE_EASYVIDEOGAMES_V = "t_EVideogamesV";
     public static final String TABLE_DIFICULTVIDEOGAMES_V = "t_DVideogamesV";
+    public static final String TABLE_RANKING = "t_Ranking";
 
     public DbHelper(@Nullable Context context) {
         super(context,DATABASE_NAME, null, DATABASE_VERSION);
@@ -380,6 +381,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "DCineV_CorrectAnsw TEXT NOT NULL)"
         );
 
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_RANKING+ "(" +
+                "Player_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "Player_NAME TEXT NOT NULL," +
+                "Player_CORRECT INTEGER NOT NULL," +
+                "Player_INCORRECT TEXT NOT NULL," +
+                "Player_TIME INTEGER NOT NULL)"
+        );
+
     }
 
     @Override
@@ -423,6 +432,8 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYANIME_V);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYHISTORY_V);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EASYCINE_V);
+
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_RANKING);
 
         onCreate(sqLiteDatabase);
     }

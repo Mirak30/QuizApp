@@ -11,9 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Ranking extends AppCompatActivity {
-    String s1[], s2[];
+import com.example.prueba_quiz.db.DbRanking;
 
+import java.util.ArrayList;
+
+public class Ranking extends AppCompatActivity {
+    ArrayList<Player> players;
+    DbRanking ranking;
     RecyclerView recyclerView;
     ImageButton goBack;
     int play;
@@ -21,16 +25,14 @@ public class Ranking extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
-
+        ranking=new DbRanking(this);
+        players=ranking.showPlayers();
         recyclerView = findViewById(R.id.RecycleViewRanking);
-        s1 = getResources().getStringArray(R.array.nameRanking);
-        s2 = getResources().getStringArray(R.array.resultRanking);
+
         play = (int) Comunicador.getInt();
-        MyAdapter myAdapter = new MyAdapter(this, s1, s2);
+        MyAdapter myAdapter = new MyAdapter(this, players);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
 
         configureButton();
     }

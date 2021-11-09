@@ -11,12 +11,11 @@
         android:id="@+id/BReset"
         android:layout_width="165dp"
         android:layout_height="70dp"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/boton_tipo3"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/BExitFinal"
+        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -41,11 +40,10 @@
         android:layout_width="165dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="30dp"
         android:background="@drawable/boton_tipo3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/BReset"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -97,17 +95,18 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="352dp"
-        android:layout_height="386dp"
+        android:layout_width="339dp"
+        android:layout_height="370dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/tablon"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textChronometerResult" />
+        app:layout_constraintTop_toBottomOf="@+id/textChronometerResult"
+        app:layout_constraintVertical_bias="0.099" />
 
     <TextView
         android:id="@+id/textCorrects"
@@ -127,13 +126,15 @@
         android:id="@+id/textIncorrects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/harringt"
         android:text="Incorrectas:"
         android:textColor="#111111"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toEndOf="@+id/textResult"
         app:layout_constraintTop_toBottomOf="@+id/textNameResult" />
 
@@ -142,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/harringt"
         android:text="0"
@@ -150,7 +151,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textIncorrects"
         app:layout_constraintTop_toBottomOf="@+id/textNameResult" />
 

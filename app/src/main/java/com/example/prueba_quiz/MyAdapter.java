@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    String data1[], data2[];
+    ArrayList<Player> players;
     Context context;
 
-    public MyAdapter(Context ct, String s1[], String s2[])
+    public MyAdapter(Context ct, ArrayList<Player> players)
     {
         context = ct;
-        data1 = s1;
-        data2 = s2;
+        this.players=new ArrayList<Player>(players);
     }
 
     @NonNull
@@ -31,22 +32,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.myText1.setText(data1[position]);
-        holder.myText2.setText(data2[position]);
+        holder.myText1.setText(players.get(position).getName());
+        holder.myText2.setText("Resultado: Correctas: "+players.get(position).getCorrect()+ "/ Incorrectas: "+ players.get(position).getIncorrect());
+        holder.myText3.setText(Integer.toString(players.get(position).getSeconds()));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return players.size()-1;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView myText1, myText2;
+        TextView myText1, myText2,myText3;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             myText1 = itemView.findViewById(R.id.textNameRanking);
             myText2 = itemView.findViewById(R.id.textResultRanking);
+            myText3 = itemView.findViewById(R.id.time);
         }
     }
 

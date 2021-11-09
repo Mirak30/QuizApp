@@ -14,22 +14,28 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.prueba_quiz.db.DbRanking;
+
+import java.util.ArrayList;
+
 public class Result extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ImageButton BExitFinal;
     ImageButton BReset;
-    String s1[], s2[], name;
+    String s1[], s2[],name;
+    ArrayList<Player> players;
     int result;
     int resultIncorrects;
     long chronometerResult;
     TextView textChronometerResult;
+    DbRanking dbRanking;
     int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
+        dbRanking=new DbRanking(this);
         result = getIntent().getIntExtra("result",0);
         resultIncorrects = getIntent().getIntExtra("resultIncorrect",0);
         TextView resultFinal = findViewById(R.id.textResult);
@@ -47,12 +53,18 @@ public class Result extends AppCompatActivity {
         s1 = getResources().getStringArray(R.array.nameRanking);
         s2 = getResources().getStringArray(R.array.resultRanking);
 
-        MyAdapter myAdapter = new MyAdapter(this, s1, s2);
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         chronometerResult = SystemClock.elapsedRealtime() - getIntent().getLongExtra("timeChronometerResult",0);
         textChronometerResult = findViewById(R.id.textChronometerResult);
         textChronometerResult.setText(Long.toString(chronometerResult));
+
+        dbRanking.insertPlayer(name,result,resultIncorrects,chronometerResult);
+        players = dbRanking.showPlayers();
+        MyAdapter myAdapter = new MyAdapter(this, players);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         configureButton();
     }
