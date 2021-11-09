@@ -13,13 +13,15 @@ import android.widget.Toast;
 
 public class Options extends AppCompatActivity {
 
-    Spinner nQuest;
+    Spinner nQuest,dif;
     String opt[]={"5","10","15"}, name;
+    String optDif[]={"Fácil","Difícil"};
     ImageButton goBack,bChangeName,bsound;
     int play;
     EditText changeName;
     Intent in, i;
     ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter<String> arrayAdapterDif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class Options extends AppCompatActivity {
         setContentView(R.layout.activity_options);
 
         nQuest = findViewById(R.id.spinnerNumberQuestions);
+        dif = findViewById(R.id.spinnerQuest);
         goBack = findViewById(R.id.BGoBackOpt);
         bsound = findViewById(R.id.BSoundOn);
         changeName = findViewById(R.id.editTextPersonName);
@@ -39,6 +42,9 @@ public class Options extends AppCompatActivity {
 
         arrayAdapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,opt);
         nQuest.setAdapter(arrayAdapter);
+
+        arrayAdapterDif=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,optDif);
+        dif.setAdapter(arrayAdapterDif);
 
         confButton();
     }
@@ -71,6 +77,8 @@ public class Options extends AppCompatActivity {
             public void onClick(View view) {
                 in=new Intent(Options.this,Category.class);
                 in.putExtra("nQuest",Integer.parseInt(nQuest.getSelectedItem().toString()));
+                Comunicador.setDif(dif.getSelectedItem().toString());
+                Comunicador.setnQuest(Integer.parseInt(nQuest.getSelectedItem().toString()));
                 finish();
                 startActivity(in);
             }

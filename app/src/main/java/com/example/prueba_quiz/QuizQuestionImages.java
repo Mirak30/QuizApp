@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ public class QuizQuestionImages extends AppCompatActivity {
 
     private ImageButton BExit;
     private ImageView barra;
+    Chronometer chronometerSound;
     private ImageButton BOp1, BOp2, BOp3, BOp4;
     private ImageView question;
     private int imagesEasy[]={R.drawable.reinaisabel};
@@ -29,8 +32,11 @@ public class QuizQuestionImages extends AppCompatActivity {
             R.drawable.barra_15_11, R.drawable.barra_15_12, R.drawable.barra_15_13, R.drawable.barra_15_14, R.drawable.barra_15_15};
     private String correctAnswer;
     private ArrayList<ImageQuestions> imageQuestions;
+    private ArrayList<SoundQuestions> soundQuestions;
+    private ArrayList<VideoQuestions> videoQuestions;
     private boolean[] answerIsCorrect;
     private int currentQuestion;
+    private int currentQuestionGlobal;
     private TextView textQuestion;
     private int partialRes;
     private int partialResIncorrect;
@@ -39,6 +45,8 @@ public class QuizQuestionImages extends AppCompatActivity {
     boolean correct = false;
     Intent i,cat;
     String difficulty;
+    long antChronometer;
+    long sigChronometer = 0;
     boolean images;
     int play;
     @Override
@@ -55,10 +63,17 @@ public class QuizQuestionImages extends AppCompatActivity {
         partialRes=cat.getIntExtra("result",0);
         partialResIncorrect = cat.getIntExtra("resultIncorrect",0);
         question=findViewById(R.id.imgQuest);
+        antChronometer = cat.getLongExtra("timeChronometerMultimedia",0);
         barra = findViewById(R.id.imageNumberQuestions);
         imageQuestions=(ArrayList<ImageQuestions>)cat.getSerializableExtra("imgQuest");
+        soundQuestions=(ArrayList<SoundQuestions>)cat.getSerializableExtra("soundQuest");
+        videoQuestions=(ArrayList<VideoQuestions>)cat.getSerializableExtra("videoQuest");
+        chronometerSound=findViewById(R.id.chronometer2);
+        chronometerSound.setBase(SystemClock.elapsedRealtime()-antChronometer);
+        chronometerSound.start();
         play = (int) Comunicador.getInt();
         currentQuestion = 0;
+        currentQuestionGlobal=cat.getIntExtra("ccGlobal",0);
         //answerIsCorrect = new boolean[imageQuestions.size()];
 
         showQuestion();
@@ -87,13 +102,13 @@ public class QuizQuestionImages extends AppCompatActivity {
         tb.setText(q.getAnswer4());
 
         if(cat.getIntExtra("nQuest",5)==5){
-            barra.setImageResource(id_Questions5[currentQuestion+cat.getIntExtra("currentQuest",0)+1]);
+            barra.setImageResource(id_Questions5[currentQuestionGlobal+1]);
 
         }else if(cat.getIntExtra("nQuest",5)==10) {
-            barra.setImageResource(id_Questions10[currentQuestion+cat.getIntExtra("currentQuest",0)+1]);
+            barra.setImageResource(id_Questions10[currentQuestionGlobal+1]);
 
         }else if(cat.getIntExtra("nQuest",5)==15){
-            barra.setImageResource(id_Questions15[currentQuestion+cat.getIntExtra("currentQuest",0)+1]);
+            barra.setImageResource(id_Questions15[currentQuestionGlobal+1]);
 
         }
     }
@@ -105,7 +120,7 @@ public class QuizQuestionImages extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                System.exit(0);
+                startActivity(new Intent(QuizQuestionImages.this, Category.class));
             }
         });
 
@@ -170,13 +185,20 @@ public class QuizQuestionImages extends AppCompatActivity {
             i.putExtra("resultIncorrect", partialResIncorrect);
         }
 
-        if(currentQuestion == 0)
+        if(currentQuestion == imageQuestions.size()-1)
         {
+            i.putExtra("soundQuest",soundQuestions);
+            i.putExtra("videoQuest",videoQuestions);
+            sigChronometer = SystemClock.elapsedRealtime() - chronometerSound.getBase();
+            i.putExtra("timeChronometerMultimedia", sigChronometer);
+            i.putExtra("ccGlobal",currentQuestionGlobal+1);
+            chronometerSound.stop();
             finish();
             startActivity(i);
         }else
         {
             currentQuestion++;
+            currentQuestionGlobal++;
             showQuestion();
         }
     }

@@ -39,7 +39,7 @@ public class QuizImages extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_images);
         intent=getIntent();
-        i=new Intent(QuizImages.this, QuizQuestionImages.class);
+        //i=new Intent(QuizImages.this, QuizQuestionImages.class);
         partialRes=intent.getIntExtra("result",0);
         partialResIncorrect=intent.getIntExtra("resultIncorrect",0);
         difficulty=intent.getStringExtra("Difficulty");

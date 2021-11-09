@@ -3,12 +3,15 @@ package com.example.prueba_quiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.prueba_quiz.db.DbHelper;
 import com.example.prueba_quiz.db.DbImageQuestion;
+import com.example.prueba_quiz.db.DbSoundQuestion;
 import com.example.prueba_quiz.db.DbTextQuestion;
+import com.example.prueba_quiz.db.DbVideoQuestion;
 
 import java.util.ArrayList;
 
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         listArrayQuestions = new ArrayList<>();
 
         try {
+
+
             DbTextQuestion db = new DbTextQuestion(this);
 
             db.insertEasyQuestionAnime("¿Cuál es el apellido de Edward en 'Fullmetal Alchemist'?", "Elmac",
@@ -285,6 +290,86 @@ public class MainActivity extends AppCompatActivity {
                     "E.T.",R.drawable.cinedif3);
             dbIm.insertQuestionDCineImg("¿De qué película es la escena?","La chica del tren","Lost in Translation","Ghost in the Shell","El becario",
                     "Lost in Translation",R.drawable.cinedif4);
+
+
+            DbSoundQuestion dbS=new DbSoundQuestion(this);
+
+            dbS.insertQuestionEVideogamesS("¿De qué personaje es este sonido?", "Peach", "Mario", "Daisy","Luigi",
+                    "Luigi",R.raw.sound1);
+            dbS.insertQuestionEVideogamesS("¿De qué juego es esta canción?", "Saga de Zelda", "Animal Crossing", "NieR:Automata","Genshin Impact",
+                    "Saga de Zelda",R.raw.sound2);
+
+            dbS.insertQuestionDAnimeS("¿De qué anime es esta canción?", "Ga Rei Zero", "Steins;Gate", "Overlord","Youjo Senki",
+                    "Youjo Senki",R.raw.sound3);
+
+            dbS.insertQuestionDAnimeS("¿De cuál de todos los Jojo's es la canción?", "Stardust Crusaders", "Battle Tendency", "Golden Wind","Phantom Blood",
+                    "Battle Tendency",R.raw.sound4);
+
+            dbS.insertQuestionECineS("¿De qué película es esta canción?", "Star Wars", "El Señor de los Anillos", "Coraline","Harry Potter",
+                    "Harry Potter",R.raw.sound5);
+            dbS.insertQuestionECineS("¿De qué película es esta canción?", "Wall-E", "Toy Story", "Big Hero 6","D.A.R.Y.L",
+                    "Wall-E",R.raw.soundcf2);
+            dbS.insertQuestionDCineS("¿De qué película es esta banda sonora?", "Nadie", "Hero", "Rambo","Venganza",
+                    "Rambo",R.raw.soundcd1);
+            dbS.insertQuestionDCineS("¿De qué película es esta banda sonora?", "La novia cadáver", "La La Land", "Carol","Lady Bird",
+                    "La novia cadáver",R.raw.soundcd2);
+
+            dbS.insertQuestionDVideogamesS("¿De qué juego es este audio?", "Minecraft", "Dragon Quest", "NieR:Automata","Genshin Impact",
+                    "NieR:Automata",R.raw.soundvd1);
+            dbS.insertQuestionDVideogamesS("¿De qué juego es este audio?", "Alice Madness Returns", "Perfect Dark", "LittleBigPlanet","Portal",
+                    "Alice Madness Returns",R.raw.soundvd2);
+
+            dbS.insertQuestionEAnimeS("¿De qué anime es este sonido?", "Code Geas", "Evangelion", "Burst Angel","Mazinger Z",
+                    "Evangelion",R.raw.soundaf1);
+            dbS.insertQuestionEAnimeS("¿De qué anime es este sonido?", "Bleach", "Naruto", "Kill la Kill","One Piece",
+                    "One Piece",R.raw.soundaf2);
+            dbS.insertQuestionEHistoryS("¿Quién compuso esto?", "Beethoven", "Bach", "Mozart","Chopin",
+                    "Mozart",R.raw.soundhf1);
+            dbS.insertQuestionDHistoryS("¿Quién compuso esto?", "Brahms", "Haydn", "Chopin","Beethoven",
+                    "Beethoven",R.raw.soundhd1);
+
+            DbVideoQuestion dbV=new DbVideoQuestion(this);
+
+            dbV.insertQuestionEAnimeV("¿De qué anime es el OP?","Beastars","Hataraku Saibou","Tokyo Ghoul","Urasekai Picnic",
+                    "Tokyo Ghoul",R.raw.video3);
+
+            dbV.insertQuestionEAnimeV("¿De qué anime es el OP?","SAO","Overlord","Kakegurui","Haikyu!!",
+                    "SAO",R.raw.video4);
+
+            dbV.insertQuestionDAnimeV("¿De qué anime es el OP?","Shirobako","Soul Eater","Dog Days","Blood+",
+                    "Soul Eater",R.raw.videoad1);
+
+            dbV.insertQuestionDAnimeV("¿De qué anime es el OP?","Ajin","Dororo","Psycho-Pass","Blue Exorcist",
+                    "Psycho-Pass",R.raw.videoad2);
+
+            dbV.insertQuestionDVideogamesV("¿De qué juego es el vídeo?","Top Gear","Sunset Riders","Star Fox","Breath of Fire",
+                    "Sunset Riders",R.raw.video1);
+
+            dbV.insertQuestionDVideogamesV("¿De qué juego es el vídeo?","Age of Empires III","Age of Empires IV","Age of Mythology","Empire Earth",
+                    "Age of Mythology",R.raw.video2);
+
+            dbV.insertQuestionECineV("¿De qué película es esta escena?","Frozen 2","Frozen","Mulan","Vaiana",
+                    "Frozen 2",R.raw.video5);
+
+            dbV.insertQuestionECineV("¿De qué película es esta escena?","Aladdin","Coco","Del revés","Big Hero 6",
+                    "Coco",R.raw.videocf2);
+
+            dbV.insertQuestionDCineV("¿De qué película es esta escena?","El Padrino","La niebla","Sleepy Hollow","Carrie",
+                    "La niebla",R.raw.video6);
+
+            dbV.insertQuestionDCineV("¿De qué película es esta banda sonora?","El perfume","El informante","La favorita","El gran showman",
+                    "La favorita",R.raw.video7);
+
+            dbV.insertQuestionEHistoryV("¿Quién dio este discurso?","Hitler","Franco","Pinochet","Fujimori",
+                    "Hitler",R.raw.video9);
+
+            dbV.insertQuestionDHistoryV("Quién dio este discurso?","Pasteur","Luther King","Armstrong","Freud",
+                    "Luther King",R.raw.video8);
+
+            dbV.insertQuestionEVideogamesV("¿Quién es?","Yoimiya","Jean","Hu Tao","Klee",
+                    "Hu Tao",R.raw.videovf2);
+            dbV.insertQuestionEVideogamesV("¿De qué juego es esta escena?","GTA Vice City","GTA San Andreas","GTA III","GTA IV",
+                    "GTA San Andreas",R.raw.videovf1);
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {

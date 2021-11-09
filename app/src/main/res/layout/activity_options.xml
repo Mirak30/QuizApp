@@ -189,9 +189,9 @@
 
     <ImageButton
         android:id="@+id/BEnglish"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/ingles"
         android:scaleType="centerCrop"
@@ -206,13 +206,13 @@
 
     <ImageButton
         android:id="@+id/BSpanish"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="56dp"
+        android:layout_height="49dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/espa_ol"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/textLanguages"
         app:srcCompat="@drawable/espa_ol"
@@ -239,25 +239,53 @@
         android:layout_width="159dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:popupBackground="@color/white"
+        android:popupBackground="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <Spinner
+        android:id="@+id/spinnerQuest"
+        android:layout_width="159dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+
+        android:popupBackground="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textLanguages2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/textLanguages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="124dp"
         android:fontFamily="@font/harringt"
         android:text="Idioma"
         android:textColor="#111111"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textLanguages2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:fontFamily="@font/harringt"
+        android:text="Dificultad"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.749"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
