@@ -186,7 +186,7 @@ db.close();
         Cursor cursorQuestions = null;
 
 
-        cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_RANKING + " ORDER BY Player_CORRECT DESC" ,null);
+        cursorQuestions = db.rawQuery("SELECT * FROM " + TABLE_RANKING + " ORDER BY Player_CORRECT DESC,Player_TIME ASC" ,null);
 
 
         if(cursorQuestions.moveToFirst())
