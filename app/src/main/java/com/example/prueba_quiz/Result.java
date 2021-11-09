@@ -23,7 +23,7 @@ public class Result extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton BExitFinal;
     ImageButton BReset;
-    String s1[], s2[],name;
+    String name;
     ArrayList<Player> players;
     int result;
     int resultIncorrects;
@@ -45,15 +45,11 @@ public class Result extends AppCompatActivity {
         String si=Integer.toString(resultIncorrects);
         resultFinal.setText(sc);
         resultFinalIncorrect.setText(si);
-        recyclerView = findViewById(R.id.RecycleViewRanking);
+
         name = Comunicador.getString();
         nameResult = findViewById(R.id.textNameResult);
         nameResult.setText(name);
         play = (int) Comunicador.getInt();
-        s1 = getResources().getStringArray(R.array.nameRanking);
-        s2 = getResources().getStringArray(R.array.resultRanking);
-
-
 
         chronometerResult = SystemClock.elapsedRealtime() - getIntent().getLongExtra("timeChronometerResult",0);
         textChronometerResult = findViewById(R.id.textChronometerResult);
@@ -61,6 +57,7 @@ public class Result extends AppCompatActivity {
 
         dbRanking.insertPlayer(name,result,resultIncorrects,chronometerResult);
         players = dbRanking.showPlayers();
+        recyclerView = findViewById(R.id.RecycleViewRanking);
         MyAdapter myAdapter = new MyAdapter(this, players);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

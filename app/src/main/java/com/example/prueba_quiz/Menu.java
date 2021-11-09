@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.VideoView;
 
+import com.example.prueba_quiz.db.DbRanking;
+
 import java.util.function.BinaryOperator;
 
 public class Menu extends AppCompatActivity{
@@ -23,17 +25,21 @@ public class Menu extends AppCompatActivity{
     int nCurrentVideoPosition;
     int play;
     String nombre;
+    DbRanking dbOpt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         boolean soundPlay = false;
+        dbOpt=new DbRanking(this);
         i=new Intent(this, Options.class);
         editName = findViewById(R.id.editTextPersonName);
         videoBg = (VideoView) findViewById(R.id.videoView);
-
+        editName.setText(dbOpt.showName());
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fondo_v4);
-        play = (int) Comunicador.getInt();
+        //play = (int) Comunicador.getInt();
+        play=dbOpt.showAudio();
+        Comunicador.setInt(play);
         videoBg.setVideoURI(uri);
         videoBg.start();
 
@@ -81,6 +87,7 @@ public class Menu extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 nombre = String.valueOf(editName.getText());
+                dbOpt.insertPreferences(dbOpt.showNQuest(),dbOpt.showDiff(),nombre,dbOpt.showAudio());
                 Comunicador.setString(nombre);
                 finish();
                 startActivity(new Intent(Menu.this, Category.class));

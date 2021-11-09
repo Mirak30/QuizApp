@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prueba_quiz.db.DbHelper;
 import com.example.prueba_quiz.db.DbImageQuestion;
+import com.example.prueba_quiz.db.DbRanking;
 import com.example.prueba_quiz.db.DbSoundQuestion;
 import com.example.prueba_quiz.db.DbTextQuestion;
 import com.example.prueba_quiz.db.DbVideoQuestion;
@@ -22,18 +23,27 @@ public class Category extends AppCompatActivity {
 
     ImageButton BOptions, startQuiz, goBack,bCinema, bHistory,bVideogames, bAnime;
     String opt[]={"Easy","Difficult"};
-    int numQuest=5;
+    int numQuest;
     Intent i,in,options;
     ArrayAdapter<String> arrayAdapter;
     DbTextQuestion dbTextQuestion;
     DbImageQuestion dbImageQuestion;
     DbVideoQuestion dbVideoQuestion;
     DbSoundQuestion dbSoundQuestion;
+    DbRanking dbRanking;
     int play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        dbRanking=new DbRanking(this);
+        if(dbRanking.showNQuest()==0){
+            numQuest=5;
+        }else if(dbRanking.showNQuest()==1){
+            numQuest=10;
+        }else{
+            numQuest=15;
+        }
 
         goBack=findViewById(R.id.BGoBackOpt);
         startQuiz=findViewById(R.id.ButtomStartQuiz);
@@ -106,7 +116,7 @@ public class Category extends AppCompatActivity {
                 ArrayList<VideoQuestions> listaPreguntasV=new ArrayList<>();
 
 
-                if (Comunicador.getDif()=="Fácil"||Comunicador.getDif()==null) {
+                if (dbRanking.showDiff()==0) {
                     //i.putExtra("Difficulty","Easy");
 
                     listaPreguntasTxt = dbTextQuestion.showQuestions(DbHelper.TABLE_EASYHISTORY);
@@ -146,7 +156,7 @@ public class Category extends AppCompatActivity {
                 ArrayList<SoundQuestions> listaPreguntasS=new ArrayList<>();
                 ArrayList<VideoQuestions> listaPreguntasV=new ArrayList<>();
 
-                if (Comunicador.getDif()=="Fácil"||Comunicador.getDif()==null) {
+                if (dbRanking.showDiff()==0) {
                     //i.putExtra("Difficulty","Easy");
 
                     listaPreguntasTxt = dbTextQuestion.showQuestions(DbHelper.TABLE_EASYANIME);
@@ -187,7 +197,7 @@ public class Category extends AppCompatActivity {
                 ArrayList<SoundQuestions> listaPreguntasS=new ArrayList<>();
                 ArrayList<VideoQuestions> listaPreguntasV=new ArrayList<>();
 
-                if (Comunicador.getDif()=="Fácil"||Comunicador.getDif()==null) {
+                if (dbRanking.showDiff()==0) {
                     //i.putExtra("Difficulty","Easy");
 
                     listaPreguntasTxt = dbTextQuestion.showQuestions(DbHelper.TABLE_EASYCINE);
@@ -228,7 +238,7 @@ public class Category extends AppCompatActivity {
                 ArrayList<SoundQuestions> listaPreguntasS=new ArrayList<>();
                 ArrayList<VideoQuestions> listaPreguntasV=new ArrayList<>();
 
-                if (Comunicador.getDif()=="Fácil"||Comunicador.getDif()==null) {
+                if (dbRanking.showDiff()==0) {
                     //i.putExtra("Difficulty","Easy");
 
                     listaPreguntasTxt = dbTextQuestion.showQuestions(DbHelper.TABLE_EASYVIDEOGAMES);

@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.prueba_quiz.db.DbRanking;
+
 public class Options extends AppCompatActivity {
 
     Spinner nQuest,dif;
@@ -22,22 +24,25 @@ public class Options extends AppCompatActivity {
     Intent in, i;
     ArrayAdapter<String> arrayAdapter;
     ArrayAdapter<String> arrayAdapterDif;
-
+    DbRanking dbOpt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
-
+        dbOpt=new DbRanking(this);
         nQuest = findViewById(R.id.spinnerNumberQuestions);
         dif = findViewById(R.id.spinnerQuest);
         goBack = findViewById(R.id.BGoBackOpt);
         bsound = findViewById(R.id.BSoundOn);
         changeName = findViewById(R.id.editTextPersonName);
         bChangeName = findViewById(R.id.BChangeName);
-        name = Comunicador.getString();
-        changeName.setText(name);
-        play = (int) Comunicador.getInt();
 
+        play = (int) Comunicador.getInt();
+        if(play==0){
+            bsound.setImageResource(R.drawable.sonido_on);
+        }else{
+            bsound.setImageResource(R.drawable.sonido_off);
+        }
         i=new Intent(this, Result.class);
 
         arrayAdapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,opt);
@@ -45,7 +50,12 @@ public class Options extends AppCompatActivity {
 
         arrayAdapterDif=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,optDif);
         dif.setAdapter(arrayAdapterDif);
-
+        name=dbOpt.showName();
+        play=dbOpt.showAudio();
+        nQuest.setSelection(dbOpt.showNQuest());
+        dif.setSelection(dbOpt.showDiff());
+        name = Comunicador.getString();
+        changeName.setText(name);
         confButton();
     }
     private void confButton(){
@@ -68,6 +78,7 @@ public class Options extends AppCompatActivity {
                       startService(i);
                       play = 1;
                   }
+
                     Comunicador.setInt(play);
               }
         });
@@ -79,6 +90,7 @@ public class Options extends AppCompatActivity {
                 in.putExtra("nQuest",Integer.parseInt(nQuest.getSelectedItem().toString()));
                 Comunicador.setDif(dif.getSelectedItem().toString());
                 Comunicador.setnQuest(Integer.parseInt(nQuest.getSelectedItem().toString()));
+                dbOpt.insertPreferences(nQuest.getSelectedItemPosition(),dif.getSelectedItemPosition(),name,play);
                 finish();
                 startActivity(in);
             }
